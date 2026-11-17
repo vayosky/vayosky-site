@@ -789,7 +789,7 @@
   function endTravel(showOverlay) {
     if (!travel.on) return;
     travel.on = false; el('travel').classList.add('hidden');
-    if (showOverlay) el('overlay').classList.remove('hidden');
+    if (showOverlay) (el('overlay').classList.remove('hidden'), flagsVis());
   }
   function travelFrame(dt) {
     travel.t += dt;
@@ -833,7 +833,7 @@
     picShownAt = 0;
     el('picHint').classList.add('hidden');
     if (pendingTravel) { const m = pendingTravel; pendingTravel = 0; startTravel(m); }
-    else el('overlay').classList.remove('hidden');
+    else (el('overlay').classList.remove('hidden'), flagsVis());
   }
   window.addEventListener('pointerup', closePicture);
   window.addEventListener('keydown', closePicture);
@@ -882,7 +882,7 @@
     if (won) {            // erst das ganze freigelegte Bild zeigen; die Meldung kommt nach einem Tippen
       picShownAt = performance.now();
       el('picHint').classList.remove('hidden');
-    } else el('overlay').classList.remove('hidden');
+    } else (el('overlay').classList.remove('hidden'), flagsVis());
   }
 
   // v60: Passt das Feld nicht zur Lage des Handys, kann der Spieler das Level im neuen Format neu starten
@@ -893,6 +893,8 @@
     if (show) b.textContent = land ? tr('↻ Im Querformat neu starten') : tr('↻ Im Hochformat neu starten');
     b.classList.toggle('hidden', !show);
   }
+  // v61: Sprachflaggen nur auf dem Startbildschirm (sonst ueberdecken sie den Titel)
+  function flagsVis() { const f = el('langFlags'); if (f) f.style.display = state === 'start' ? '' : 'none'; }
   function updateHud() {
     checkRot();
     el('lvl').textContent = level;
