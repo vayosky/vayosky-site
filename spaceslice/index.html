@@ -150,6 +150,16 @@
   #pct{font-size:12px}
   #score{font-size:11px}
   #wallet{font-size:12px}
+  #pauseBtn{flex:none;border-radius:999px;padding:2px 8px;font-size:13px;line-height:1.3;background:#0b1230;border:1px solid var(--line);color:var(--text)}
+  #pauseBtn.hidden{display:none}
+  #pauseOv{position:absolute;inset:0;z-index:40;display:flex;align-items:center;justify-content:center;background:rgba(5,9,25,.72)}
+  #pauseOv.hidden{display:none}
+  #pauseOv .pc{background:#0d1530;border:1px solid var(--line);border-radius:18px;padding:22px 26px;text-align:center;min-width:220px;box-shadow:0 10px 30px rgba(0,0,0,.5)}
+  #pauseOv h2{margin:0 0 6px;font-size:26px}
+  #pauseOv p{margin:0 0 16px;font-size:13px;color:var(--muted)}
+  #pauseOv button{display:block;width:100%;margin-top:8px;border:0;border-radius:12px;padding:12px 16px;font-size:16px;font-weight:800;cursor:pointer}
+  #resumeBtn{background:#ffd43b;color:#1a1300}
+  #quitBtn{background:#1b2550;color:var(--text);border:1px solid var(--line)!important}
   #mute,#music,#fs{flex:none;border-radius:999px;padding:2px 6px;font-size:13px;line-height:1.3;background:#0b1230;border:1px solid var(--line);color:var(--text)}
   #badges{position:absolute;left:8px;top:calc(100% + 4px);z-index:6;pointer-events:none}
   @media (max-width:370px){ #score{display:none} }
@@ -239,6 +249,7 @@
     <div id="pct">0 % / 88 %</div>
     <div id="score">★ 0</div>
     <div id="wallet">🪙 0</div>
+    <button id="pauseBtn" type="button" class="hidden" aria-label="Pause">⏸</button>
     <button id="music" type="button" aria-label="Musik ein oder aus">🎵</button>
     <button id="mute" type="button" aria-label="Ton ein oder aus">🔊</button>
     <button id="fs" type="button" aria-label="Vollbild">⛶</button>
@@ -250,6 +261,7 @@
     <div id="cd" class="hidden"><small>Duell startet in</small><span id="cdN">3</span></div>
     <div id="toast" class="hidden"></div>
     <button id="rotBtn" type="button" class="hidden"></button>
+    <div id="pauseOv" class="hidden"><div class="pc"><h2 id="pauseH">⏸ Pause</h2><p id="pauseP">Das Spiel ist angehalten.</p><button id="resumeBtn" type="button">▶ Weiter</button><button id="quitBtn" type="button">Zum Startbildschirm</button></div></div>
     <div id="travel" class="hidden"><canvas id="tc"></canvas><div id="tText"><b id="tA"></b><span id="tB"></span><small id="tC"></small></div></div>
     <div id="picHint" class="hidden">Bild freigelegt! Tippe, um weiterzufahren.</div>
     <div id="overlay">
@@ -322,7 +334,7 @@
   let LANG = 'de';
   try { LANG = localStorage.getItem('lang') || ((navigator.language || 'de').toLowerCase().indexOf('de') === 0 ? 'de' : 'en'); } catch (err) {}
   const EN = {"↻ Im Querformat neu starten": "↻ Restart in landscape", "↻ Im Hochformat neu starten": "↻ Restart in portrait", "Spiel wirklich neu beginnen? Level, Münzen, Boni und Bestwert werden gelöscht.": "Really start over? Level, coins, boosts and best score will be deleted.", " %, mehr und schnellere Spinnen, seltenere Kisten.": " %, more and faster spiders, rarer crates.", " %. Mit Münzen kannst du an dieser Stelle weiterspielen.": " %. You can use coins to continue from here.", " (inkl. Bonus +": " (incl. bonus +", " Gegner ist online.": " opponent is online.", " Gegner sind online.": " opponents are online.", " Level bis zum Flug in Galaxie ": " more level(s) until the flight to galaxy ", " Noch ": " ", " Punkte": " points", " Spinnen gefangen! +": " spiders caught! +", " Wer auf «Duell starten» tippt, startet für alle.": " Whoever taps «Start duel» starts it for everyone.", " erreicht": " reached", " gegen deine ": " against your ", " gelandet, Ziel «": ", destination «", " geschafft!": " complete!", " geschafft! Du bist in Galaxie ": " complete! You have landed in galaxy ", " von ": " of ", " wird schwieriger: Ziel ": " gets harder: goal ", " · Bestwert ": " · Best ", " · Galaxie ": " · Galaxy ", " · Steine": " · stones", " · Steine auch am Rand": " · stones at the edge too", " · Steine bunt": " · colourful stones", " · Steine bunt, auch am Rand": " · colourful stones, also at the edge", " · er schiesst!": " · it shoots!", " · neu: Steine": " · new: stones", " · neu: bunte Steine": " · new: colourful stones", "+5 Münzen": "+5 coins", ". Du hattest ": ". You had ", "5 Münzen, einmal pro Tag": "5 coins, once a day", "<span class=\"sc-own\">du hast ": "<span class=\"sc-own\">you have ", "Anflug auf: ": "Approaching: ", "Bild konnte nicht geladen werden.": "The picture could not be loaded.", "Boss: ": "Boss: ", "Das Bild ist freigelegt. Level ": "The picture is revealed. Level ", "Dein Gegner hat keine Leben mehr.": "Your opponent has no lives left.", "Dein Gegner war schneller: ": "Your opponent was faster: ", "Dein Gegner war zuerst fertig, in ": "Your opponent finished first, in ", "Deine Figur ist 6 Sekunden schneller.": "Your ship is faster for 6 seconds.", "Deine Linie ist 6 Sekunden geschützt.": "Your line is protected for 6 seconds.", "Du bist verbunden, aber allein. Das Duell kann erst starten, wenn dein Gegner diese Seite angemeldet geöffnet hat.": "You are connected but alone. The duel can only start once your opponent has opened this page while signed in.", "Du hast keine Leben mehr.": "You have no lives left.", "Du warst zuerst fertig, in ": "You finished first, in ", "Duell gewonnen!": "Duel won!", "Duell hier nicht verfügbar. Beide brauchen ein Claude-Konto, müssen angemeldet und zu diesem Spiel eingeladen sein.": "Duel not available here.", "Duell verloren": "Duel lost", "Eigenes Bild gewählt ✓": "Own picture selected ✓", "Erwischt!": "Caught!", "Flug in Galaxie ": "Flight to galaxy ", "Galaxie ": "Galaxy ", "Gegner ": "Opponent ", "Gegner und Geschosse sind 6 Sekunden langsam.": "Enemies and shots are slowed for 6 seconds.", "Gegner und Geschosse stehen 4 Sekunden still.": "Enemies and shots freeze for 4 seconds.", "Gratis": "Free", "Hier weiterspielen · ": "Continue here · ", "Keine Leben mehr. Freigelegt: ": "No lives left. Revealed: ", "Knapp verloren": "Narrowly lost", "Level ": "Level ", "Mission ": "Mission ", "Morgen wieder": "Back tomorrow", "Nochmal versuchen": "Try again", "Nächstes Level": "Next level", "Starter-Paket": "Starter pack", "Tagesgeschenk": "Daily gift", "Tippe, um zu landen und weiterzuspielen.": "Tap to land and keep playing.", "Vollbild geht hier nicht. Tipp: im Browser «Zum Startbildschirm hinzufügen».": "Fullscreen is not available here. Tip: use «Add to home screen» in your browser.", "Vollbild wurde blockiert. Öffne das Spiel in Chrome und versuche es dort.": "Fullscreen was blocked. Open the game in Chrome and try again there.", "Weiter geht es mit 3 Leben": "Continuing with 3 lives", "Wird beim nächsten Levelstart automatisch eingesetzt.": "Used automatically when the next level starts.", "beim nächsten Levelstart": "at the next level start", "je 1 von allen vier Boni": "1 of each of the four boosts", "». +5 Münzen.": "». +5 coins.", "⏳ Noch kein Gegner da": "⏳ No opponent yet", "★ +500 Punkte": "★ +500 points", "⚔ Duell starten": "⚔ Start duel", "❄ Eingefroren": "❄ Frozen", "❄ Spinnen eingefroren": "❄ Spiders frozen", "❤ Extraleben": "❤ Extra life", "❤ Extraleben eingesetzt · Boss: ": "❤ Extra life used · Boss: ", "🐌 Gegner in Zeitlupe": "🐌 Enemies in slow motion", "🐌 Zeitlupe": "🐌 Slow motion", "💥 Alle kleinen Spinnen weg! +": "💥 All small spiders gone! +", "🕷 Spinne gefangen! +500": "🕷 Spider caught! +500", "🛡 Linie geschützt": "🛡 Line protected", "Turbo": "Turbo", "Schutz": "Shield", "Zeitlupe": "Slow motion", "Einfrieren": "Freeze", "Extraleben": "Extra life", "Mech-Spinne": "Mech Spider", "Skorpion": "Scorpion", "Nachtfalter": "Moth", "Stachelstern": "Spike Star", "Hai": "Shark", "Panzerkäfer": "Armour Beetle", "Fledermaus": "Bat", "Krabbe": "Crab", "Adler": "Eagle", "Seeschlange": "Sea Serpent", "Wolf": "Wolf", "Qualle": "Jellyfish", "Feuerdrache": "Fire Dragon", "Rochen": "Ray", "Krake": "Octopus", "Riesenwurm": "Giant Worm", "Tintenfisch": "Squid", "Nashorn": "Rhino", "Wespe": "Wasp", "Stachelhai": "Spike Shark", "Schattenrochen": "Shadow Ray", "Tausendfüssler": "Centipede", "Eisvogel": "Kingfisher", "Kristallpanzer": "Crystal Tank", "Blauer Ringplanet": "Blue ringed planet", "Roter Planet": "Red planet", "Violetter Planet": "Violet planet", "Grüner Ringplanet": "Green ringed planet", "Kristallplanet": "Crystal planet", "Sonnenstern": "Sun star", "Raumstation": "Space station", "Schwarzes Loch": "Black hole", "Spiralnebel": "Spiral nebula"};
-  const ENH = {"Am Computer: Pfeiltaste gedrückt halten, loslassen zum Anhalten.": "On a computer: hold an arrow key, release to stop.", "Angebote": "Offers", "Bild": "Picture", "Bild freigelegt! Tippe, um weiterzufahren.": "Picture revealed! Tap to continue.", "Boni zum Einsetzen": "Boosts to use", "Daumen im Joystick-Bereich aufsetzen, leicht in eine Richtung schieben und halten. Loslassen hält an. Ziehen direkt auf dem Feld geht auch.": "Put your thumb on the joystick, push gently in a direction and hold. Let go to stop. Dragging directly on the field works too.", "Du hast 3 Leben. Trifft ein Gegner deine Linie, verlierst du eines. Ein Extraleben aus einer Kiste gibt eines dazu.": "You have 3 lives. If an enemy hits your line, you lose one. An extra life from a crate gives you one more.", "Duell startet in": "Duel starts in", "Duell: Verbindung wird geprüft …": "Duel: checking connection …", "Eigenes Bild wählen": "Choose your own picture", "Einfrieren einsetzen": "Use freeze", "Einstellungen": "Settings", "Figur": "Ship", "Fliege vom Rand ins Feld und zurück zum Rand, um ein Stück zu schliessen. Am Rand hält deine Figur an: Für den Flug ins Feld neu ansetzen.": "Fly from the edge into the field and back to the edge to close off a piece. Your ship stops at the edge: push again to fly back into the field.", "Für Elise (Beethoven)": "Für Elise (Beethoven)", "In der Halle des Bergkönigs (Grieg)": "In the Hall of the Mountain King (Grieg)", "Joystick": "Joystick", "Kisten einkreisen bringt eine Überraschung: einfrieren, Zeitlupe, Turbo, Schutz, Bombe, Extraleben oder Punkte. Münzen und Diamanten geben Punkte.": "Enclosing a crate brings a surprise: freeze, slow motion, turbo, shield, bomb, extra life or points. Coins and diamonds give points.", "Klassik, pro Level ein anderes Stück": "Classical, a different piece each level", "Kleine Spinnen einkreisen: Sie verschwinden und geben 500 Punkte. Der grosse Boss bleibt immer im verdeckten Feld. In jedem Level wartet ein anderer Boss. Ab Level 2 schiesst der Boss leuchtende Geschosse: Treffen sie deine offene Linie, kostet das ein Leben. Ab Level 9 kommen feste Steinblöcke dazu.": "Enclose small spiders: they vanish and give 500 points. The big boss always stays in the covered area. Every level has a different boss. From level 2 the boss fires glowing shots: if they hit your open line, you lose a life. From level 9 there are fixed stone blocks.", "Laden": "Shop", "Laden schliessen": "Close shop", "Lege mit deiner Figur 88 % des verdeckten Bildes frei, ohne dass ein Gegner deine offene Linie berührt.": "Reveal 88 % of the hidden picture with your ship without letting an enemy touch your open line.", "Level": "Level", "Links": "Left", "Mitte": "Centre", "Rechts": "Right", "Musik": "Music", "Musik ein oder aus": "Music on or off", "Münzen sammelst du im Spiel: Münze 1, Diamant 2, gewonnenes Level 3, geschaffte Mission 5, Tagesgeschenk 5. Gekaufte Boni setzt du im Spiel mit den runden Knöpfen neben dem Joystick ein (am Computer: Tasten 1 bis 4).": "You collect coins in the game: coin 1, diamond 2, level won 3, mission complete 5, daily gift 5. Use bought boosts in the game with the round buttons next to the joystick (on a computer: keys 1 to 4).", "Ode an die Freude (Beethoven)": "Ode to Joy (Beethoven)", "Ruhige Arcade-Schleife": "Calm arcade loop", "Schutz einsetzen": "Use shield", "So wird gespielt": "How to play", "Ton ein oder aus": "Sound on or off", "Turbo einsetzen": "Use turbo", "Türkischer Marsch (Mozart)": "Turkish March (Mozart)", "Vollbild": "Fullscreen", "Zeitlupe einsetzen": "Use slow motion", "Zurück zum Spiel": "Back to game", "⚔ Duell starten": "⚔ Start duel", "Sprache": "Language", "Spielstand": "Progress", "Spiel neu beginnen": "Start over"};
+  const ENH = {"⏸ Pause": "⏸ Pause", "Das Spiel ist angehalten.": "The game is paused.", "▶ Weiter": "▶ Resume", "Zum Startbildschirm": "Back to start screen", "Am Computer: Pfeiltaste gedrückt halten, loslassen zum Anhalten.": "On a computer: hold an arrow key, release to stop.", "Angebote": "Offers", "Bild": "Picture", "Bild freigelegt! Tippe, um weiterzufahren.": "Picture revealed! Tap to continue.", "Boni zum Einsetzen": "Boosts to use", "Daumen im Joystick-Bereich aufsetzen, leicht in eine Richtung schieben und halten. Loslassen hält an. Ziehen direkt auf dem Feld geht auch.": "Put your thumb on the joystick, push gently in a direction and hold. Let go to stop. Dragging directly on the field works too.", "Du hast 3 Leben. Trifft ein Gegner deine Linie, verlierst du eines. Ein Extraleben aus einer Kiste gibt eines dazu.": "You have 3 lives. If an enemy hits your line, you lose one. An extra life from a crate gives you one more.", "Duell startet in": "Duel starts in", "Duell: Verbindung wird geprüft …": "Duel: checking connection …", "Eigenes Bild wählen": "Choose your own picture", "Einfrieren einsetzen": "Use freeze", "Einstellungen": "Settings", "Figur": "Ship", "Fliege vom Rand ins Feld und zurück zum Rand, um ein Stück zu schliessen. Am Rand hält deine Figur an: Für den Flug ins Feld neu ansetzen.": "Fly from the edge into the field and back to the edge to close off a piece. Your ship stops at the edge: push again to fly back into the field.", "Für Elise (Beethoven)": "Für Elise (Beethoven)", "In der Halle des Bergkönigs (Grieg)": "In the Hall of the Mountain King (Grieg)", "Joystick": "Joystick", "Kisten einkreisen bringt eine Überraschung: einfrieren, Zeitlupe, Turbo, Schutz, Bombe, Extraleben oder Punkte. Münzen und Diamanten geben Punkte.": "Enclosing a crate brings a surprise: freeze, slow motion, turbo, shield, bomb, extra life or points. Coins and diamonds give points.", "Klassik, pro Level ein anderes Stück": "Classical, a different piece each level", "Kleine Spinnen einkreisen: Sie verschwinden und geben 500 Punkte. Der grosse Boss bleibt immer im verdeckten Feld. In jedem Level wartet ein anderer Boss. Ab Level 2 schiesst der Boss leuchtende Geschosse: Treffen sie deine offene Linie, kostet das ein Leben. Ab Level 9 kommen feste Steinblöcke dazu.": "Enclose small spiders: they vanish and give 500 points. The big boss always stays in the covered area. Every level has a different boss. From level 2 the boss fires glowing shots: if they hit your open line, you lose a life. From level 9 there are fixed stone blocks.", "Laden": "Shop", "Laden schliessen": "Close shop", "Lege mit deiner Figur 88 % des verdeckten Bildes frei, ohne dass ein Gegner deine offene Linie berührt.": "Reveal 88 % of the hidden picture with your ship without letting an enemy touch your open line.", "Level": "Level", "Links": "Left", "Mitte": "Centre", "Rechts": "Right", "Musik": "Music", "Musik ein oder aus": "Music on or off", "Münzen sammelst du im Spiel: Münze 1, Diamant 2, gewonnenes Level 3, geschaffte Mission 5, Tagesgeschenk 5. Gekaufte Boni setzt du im Spiel mit den runden Knöpfen neben dem Joystick ein (am Computer: Tasten 1 bis 4).": "You collect coins in the game: coin 1, diamond 2, level won 3, mission complete 5, daily gift 5. Use bought boosts in the game with the round buttons next to the joystick (on a computer: keys 1 to 4).", "Ode an die Freude (Beethoven)": "Ode to Joy (Beethoven)", "Ruhige Arcade-Schleife": "Calm arcade loop", "Schutz einsetzen": "Use shield", "So wird gespielt": "How to play", "Ton ein oder aus": "Sound on or off", "Turbo einsetzen": "Use turbo", "Türkischer Marsch (Mozart)": "Turkish March (Mozart)", "Vollbild": "Fullscreen", "Zeitlupe einsetzen": "Use slow motion", "Zurück zum Spiel": "Back to game", "⚔ Duell starten": "⚔ Start duel", "Sprache": "Language", "Spielstand": "Progress", "Spiel neu beginnen": "Start over"};
   const tr = s => LANG === 'en' && Object.prototype.hasOwnProperty.call(EN, s) ? EN[s] : s;
   document.documentElement.lang = LANG;
   if (LANG === 'en') {           // feste Texte im HTML uebersetzen
@@ -789,7 +801,7 @@
   function endTravel(showOverlay) {
     if (!travel.on) return;
     travel.on = false; el('travel').classList.add('hidden');
-    if (showOverlay) (el('overlay').classList.remove('hidden'), flagsVis());
+    if (showOverlay) showOv();
   }
   function travelFrame(dt) {
     travel.t += dt;
@@ -833,7 +845,7 @@
     picShownAt = 0;
     el('picHint').classList.add('hidden');
     if (pendingTravel) { const m = pendingTravel; pendingTravel = 0; startTravel(m); }
-    else (el('overlay').classList.remove('hidden'), flagsVis());
+    else showOv();
   }
   window.addEventListener('pointerup', closePicture);
   window.addEventListener('keydown', closePicture);
@@ -882,7 +894,7 @@
     if (won) {            // erst das ganze freigelegte Bild zeigen; die Meldung kommt nach einem Tippen
       picShownAt = performance.now();
       el('picHint').classList.remove('hidden');
-    } else (el('overlay').classList.remove('hidden'), flagsVis());
+    } else showOv();
   }
 
   // v60: Passt das Feld nicht zur Lage des Handys, kann der Spieler das Level im neuen Format neu starten
@@ -894,9 +906,26 @@
     b.classList.toggle('hidden', !show);
   }
   // v61: Sprachflaggen nur auf dem Startbildschirm (sonst ueberdecken sie den Titel)
+  // v62: Overlay zeigen; kurz keine Klicks annehmen, damit der Tipp zum Schliessen des Bildes nicht «Einstellungen» oeffnet
+  function showOv() {
+    const o = el('overlay'); o.classList.remove('hidden'); flagsVis();
+    o.style.pointerEvents = 'none'; clearTimeout(showOv.t);
+    showOv.t = setTimeout(() => { o.style.pointerEvents = ''; }, 450);
+  }
   function flagsVis() { const f = el('langFlags'); if (f) f.style.display = state === 'start' ? '' : 'none'; }
+  // v63: Pause – haelt Spiel, Boni-Zeiten und Musik an; automatisch, wenn das Handy die App verlaesst
+  let paused = false;
+  function canPause() { return state === 'play' && !(duel && duel.running); }
+  function setPause(on) {
+    if (on && !canPause()) return;
+    paused = on;
+    if (on) { stopPlayer(); heldKey = null; }
+    el('pauseOv').classList.toggle('hidden', !on);
+    if (!on) { last = 0; player.canEnter = true; }
+  }
+  function pauseVis() { const b = el('pauseBtn'); if (b) b.classList.toggle('hidden', !canPause()); if (paused && state !== 'play') setPause(false); }
   function updateHud() {
-    checkRot();
+    checkRot(); pauseVis();
     el('lvl').textContent = level;
     el('bar').style.width = Math.min(100, pct) + '%';
     el('pct').textContent = Math.floor(pct) + ' % / ' + goal() + ' %';
@@ -1539,7 +1568,8 @@
 
   let last = 0;
   function loop(ts) {
-    const dt = Math.min(0.05, (ts - last) / 1000 || 0); last = ts;
+    let dt = Math.min(0.05, (ts - last) / 1000 || 0); last = ts;
+    if (paused) dt = 0;
     update(dt); draw();
     if (R3D) { try { render3D(dt); } catch (err) { console.error(err); } }
     if (travel.on) { try { travelFrame(dt); } catch (err) { endTravel(true); } }
@@ -1708,7 +1738,7 @@
   let tuneSel = 'auto', curSong = '', mIdx = 0, mLoops = 0;
   try { tuneSel = localStorage.getItem('tune') || 'auto'; } catch (err) {}
   function musicTick() {
-    if (!ac || muted || !musicOn || state !== 'play' || ac.state !== 'running') { mNext = 0; return; }
+    if (!ac || muted || !musicOn || state !== 'play' || paused || ac.state !== 'running') { mNext = 0; return; }
     if (mNext < ac.currentTime) mNext = ac.currentTime + 0.05;
     const want = tuneSel === 'auto' ? AUTO[(level - 1) % AUTO.length] : tuneSel;
     if (want !== curSong) { curSong = want; mIdx = 0; mLoops = 0; mStep = 0; }
@@ -1853,7 +1883,7 @@
   })();
 
   /* ---------- Steuerung ---------- */
-  const setWant = (dx, dy) => { if (state === 'play') player.want = [dx, dy]; };
+  const setWant = (dx, dy) => { if (state === 'play' && !paused) player.want = [dx, dy]; };
   let ptr = null;
   const base = el('base'), knob = el('knob');
   function ptrStart(e, joy) {
@@ -2187,6 +2217,16 @@
     if (state !== 'play') return;
     startLevel(); checkRot();
   });
+  el('pauseBtn').addEventListener('click', () => setPause(true));
+  el('pauseBtn').addEventListener('pointerdown', e => e.stopPropagation());
+  el('resumeBtn').addEventListener('click', () => { initAudio(); setPause(false); });
+  el('quitBtn').addEventListener('click', () => {
+    saveShop(); location.reload();     // Level-Stand und Muenzen bleiben gespeichert
+  });
+  for (const id of ['pauseOv', 'resumeBtn', 'quitBtn']) el(id).addEventListener('pointerdown', e => e.stopPropagation());
+  document.addEventListener('visibilitychange', () => { if (document.hidden) setPause(true); });
+  window.addEventListener('blur', () => setPause(true));
+  window.addEventListener('keydown', e => { if ((e.key === 'p' || e.key === 'P' || e.key === 'Escape') && state === 'play') setPause(!paused); });
   el('resetBtn').addEventListener('click', () => {
     if (!window.confirm(tr('Spiel wirklich neu beginnen? Level, Münzen, Boni und Bestwert werden gelöscht.'))) return;
     try { ['lastLvl', 'best', 'shop', 'freeDay'].forEach(k => localStorage.removeItem(k)); } catch (err) {}
