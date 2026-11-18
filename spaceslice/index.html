@@ -199,6 +199,43 @@
   #shopOpen:active{transform:translateY(3px);box-shadow:0 1px 0 #a8501a}
   #shopWallet{font-family:var(--body);font-weight:800;background:rgba(42,18,0,.85);color:#ffe9a3;border-radius:999px;padding:4px 12px;font-size:14px}
   /* ---- Laden als eigene Seite: Kopf mit Muenzstand, Abschnitte mit Karten, Knopf zurueck ---- */
+  #galOpen{display:flex;justify-content:space-between;align-items:center;width:100%;margin-bottom:10px;background:linear-gradient(90deg,#8a5cff,#c9a7ff);color:#170838;border:0;border-radius:14px;padding:12px 16px;font-weight:800;font-size:16px;cursor:pointer}
+  #oStars{margin:2px 0 6px;font-size:30px;letter-spacing:.12em;text-align:center;color:#ffd43b;text-shadow:0 2px 0 #7a5a00}
+  #oStars.hidden{display:none}
+  #oStars small{display:block;font-size:12px;letter-spacing:0;color:var(--muted);text-shadow:none;margin-top:2px}
+  #galView{position:fixed;inset:0;z-index:20;display:flex;flex-direction:column;background:linear-gradient(180deg,#2a1d72,#0c1436)}
+  #galView.hidden{display:none}
+  .gal-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+  .gt{position:relative;aspect-ratio:3/4;border-radius:12px;overflow:hidden;border:2px solid var(--line);background:#0b1230;padding:0;cursor:pointer;color:var(--text)}
+  .gt img{width:100%;height:100%;object-fit:cover;display:block}
+  .gt.gold{border:3px solid #ffd43b;box-shadow:0 0 0 2px #7a5a00,0 0 14px rgba(255,212,59,.55)}
+  .gt .gs{position:absolute;left:0;right:0;bottom:0;padding:14px 4px 4px;font-size:11px;font-weight:800;text-align:center;background:linear-gradient(transparent,rgba(0,0,0,.8))}
+  .gt .gs b{display:block;color:#ffd43b;font-size:13px;letter-spacing:.08em}
+  .gt.lock{cursor:default;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;color:var(--muted);font-size:12px;font-weight:700}
+  .gt.lock span{font-size:24px;opacity:.6}
+  #galInfo{font-size:13px;color:var(--muted);text-align:center;margin:0}
+  #galBig{position:fixed;inset:0;z-index:25;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;background:rgba(3,6,18,.94);padding:16px}
+  #galBig.hidden{display:none}
+  #galBig img{max-width:100%;max-height:78vh;border-radius:12px;object-fit:contain}
+  #galBig img.gold{border:4px solid #ffd43b}
+  #galBigT{font-weight:800;text-align:center}
+  #galBig button{background:#ffd43b;color:#1a1300;border:0;border-radius:12px;padding:10px 22px;font-weight:800;font-size:15px}
+  /* v67: frischerer Neon-Look – bewusst ohne backdrop-filter (kostet auf einfachen Handys viel Leistung) */
+  #hud{background:linear-gradient(180deg,#18244e,#0c132c);border-bottom:1px solid rgba(110,168,255,.22);box-shadow:0 4px 18px rgba(0,0,0,.45)}
+  #hud .lvl{background:linear-gradient(135deg,#0d1638,#162458);border:1px solid rgba(120,175,255,.32)}
+  #barwrap{background:#070b1a;border:1px solid rgba(110,168,255,.28);box-shadow:inset 0 2px 5px rgba(0,0,0,.65);overflow:visible}
+  #bar{background:linear-gradient(90deg,#00c6ff,#1ad1a5,#7dffb3);box-shadow:0 0 10px rgba(26,209,165,.6)}
+  #goal{width:3px;top:-4px;bottom:-4px;background:#ffd23f;box-shadow:0 0 8px #ffd23f}
+  .card{background:linear-gradient(165deg,rgba(22,34,74,.96),rgba(11,18,42,.98));border:1px solid rgba(130,180,255,.26);box-shadow:0 24px 60px rgba(0,0,0,.7),inset 0 1px 0 rgba(255,255,255,.14)}
+  .card h1{background:linear-gradient(180deg,#ffffff 0%,#bae6fd 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;text-shadow:none;filter:drop-shadow(0 3px 0 #1e2d66)}
+  #oBtn{background:linear-gradient(180deg,#ffe066 0%,#ffb703 100%);color:#1a1200;box-shadow:0 5px 0 #9e6b00,0 10px 24px rgba(255,183,3,.35),inset 0 1px 0 rgba(255,255,255,.65)}
+  #oBtn:active{transform:translateY(3px);box-shadow:0 2px 0 #9e6b00}
+  details{background:rgba(10,16,38,.85);border:1px solid rgba(110,160,255,.2)}
+  .seg button.on{background:linear-gradient(135deg,#1ad1a5,#0ea5e9);color:#031c18}
+  #galOpen{background:linear-gradient(90deg,#7c3aed,#c084fc);color:#fff;box-shadow:0 4px 0 #4c1d95}
+  #shopOpen{background:linear-gradient(90deg,#f97316,#facc15);box-shadow:0 4px 0 #9a3412}
+  #base{background:radial-gradient(circle at 50% 45%,#172554,#090f24);border:2px solid rgba(94,224,192,.35);box-shadow:inset 0 4px 12px rgba(0,0,0,.7),0 0 16px rgba(26,209,165,.18)}
+  #knob{background:radial-gradient(circle at 35% 30%,#7dffb3,#1ad1a5 65%,#0d9488);box-shadow:0 4px 12px rgba(0,0,0,.6),0 0 12px rgba(26,209,165,.5)}
   #shopView{position:fixed;inset:0;z-index:20;display:flex;flex-direction:column;background:linear-gradient(180deg,#1d2c72,#0c1436)}
   #shopView.hidden{display:none}
   .sv-top{display:flex;align-items:center;gap:10px;padding:12px 14px;background:#111a36;border-bottom:1px solid var(--line)}
@@ -276,6 +313,7 @@
           <img class="appicon" src="img/icon.png" alt="" width="84" height="84">
           <p class="eyebrow" id="eyebrow">Space Slice</p>
           <h1 id="oTitle">Space Slice</h1>
+          <p id="oStars" class="hidden"></p>
           <p id="oText">Lege mit deiner Figur 88 % des verdeckten Bildes frei, ohne dass ein Gegner deine offene Linie berührt.</p>
         </div>
         <div id="energyRow"><b id="energyTxt">🔋 8/8</b><span id="energyInfo"></span><button id="refillBtn" type="button" style="display:none"></button></div>
@@ -298,6 +336,7 @@
             <div class="row" id="lvlRow"><label class="lab" for="lvlSel">Level</label><select id="lvlSel"></select></div>
             <div class="row" id="testRow"><span class="lab">Test</span><span class="seg"><button id="testOff" type="button" class="on">Normal</button><button id="testOn" type="button">Münzen ∞</button></span></div>
             <div class="row" id="resetRow"><span class="lab">Spielstand</span><span class="seg"><button id="resetBtn" type="button">Spiel neu beginnen</button></span></div>
+            <div class="row" id="helpRow"><span class="lab">Hilfe</span><span class="seg"><button id="mailBtn" type="button">✉ Feedback &amp; Support</button><button id="privBtn" type="button">Datenschutz</button></span></div>
             <div class="row" id="pickRow"><span class="lab">Bild</span><label class="pick">Eigenes Bild wählen<input id="file" type="file" accept="image/*"></label><span id="pickInfo"></span></div>
           </div>
         </details>
@@ -308,10 +347,12 @@
             <li><span>✏️</span>Fliege vom Rand ins Feld und zurück zum Rand, um ein Stück zu schliessen. Am Rand hält deine Figur an: Für den Flug ins Feld neu ansetzen.</li>
             <li><span>📦</span>Kisten einkreisen bringt eine Überraschung: einfrieren, Zeitlupe, Turbo, Schutz, Bombe, Extraleben oder Punkte. Münzen und Diamanten geben Punkte.</li>
             <li><span>🕷</span>Kleine Spinnen einkreisen: Sie verschwinden und geben 500 Punkte. Der grosse Boss bleibt immer im verdeckten Feld. In jedem Level wartet ein anderer Boss. Ab Level 2 schiesst der Boss leuchtende Geschosse: Treffen sie deine offene Linie, kostet das ein Leben. Ab Level 9 kommen feste Steinblöcke dazu.</li>
+            <li><span>⚡</span>Ab Level 15 läuft ein Funke auf dem sicheren Rand: Bleib nicht zu lange am Rand stehen. Nach jedem abgeschnittenen Stück springt er weit weg, ab 75 % erlischt er. Ab Level 20 brennt eine Zündschnur deine offene Linie entlang, wenn du im Feld stehen bleibst. Schneidest du über 30 % auf einmal ab, gibt es einen Mega-Slice.</li>
             <li><span>❤</span>Du hast 3 Leben. Trifft ein Gegner deine Linie, verlierst du eines. Ein Extraleben aus einer Kiste gibt eines dazu.</li>
             <li><span>⌨️</span>Am Computer: Pfeiltaste gedrückt halten, loslassen zum Anhalten.</li>
           </ul>
         </details>
+        <button id="galOpen" type="button"><span>🖼 Galerie</span><span id="galCount">0/24</span></button>
         <button id="shopOpen" type="button"><span>Laden</span><span id="shopWallet">🪙 0</span></button>
         <div id="duelRow"><button id="duelBtn" type="button" disabled>⚔ Duell starten</button><span id="duelInfo">Duell: Verbindung wird geprüft …</span></div>
       </div>
@@ -322,6 +363,15 @@
     <div id="base"><div id="knob"></div></div>
     <div class="bcol"><button class="bb" id="bb_shield" type="button" aria-label="Schutz einsetzen"></button><button class="bb" id="bb_speed" type="button" aria-label="Turbo einsetzen"></button></div>
   </div>
+  <div id="galView" class="hidden">
+    <div class="sv-top"><span class="sv-title">Galerie</span><span class="pill" id="galPill">0/24</span><button id="galClose" type="button" aria-label="Galerie schliessen">✕</button></div>
+    <div class="sv-body">
+      <p id="galInfo">Jedes geschaffte Level legt sein Bild hier ab. Mit 3 Sternen bekommt es einen goldenen Rahmen.</p>
+      <div class="gal-grid" id="galGrid"></div>
+    </div>
+    <div class="sv-nav"><button id="galHome" type="button">Zurück zum Spiel</button></div>
+  </div>
+  <div id="galBig" class="hidden"><img id="galBigImg" alt=""><div id="galBigT"></div><button id="galBigClose" type="button">Schliessen</button></div>
   <div id="shopView" class="hidden">
     <div class="sv-top"><span class="sv-title">Laden</span><span class="pill" id="svWallet">🪙 0</span><button id="svClose" type="button" aria-label="Laden schliessen">✕</button></div>
     <div class="sv-body">
@@ -339,8 +389,8 @@
 (() => {
   let LANG = 'de';
   try { LANG = localStorage.getItem('lang') || ((navigator.language || 'de').toLowerCase().indexOf('de') === 0 ? 'de' : 'en'); } catch (err) {}
-  const EN = {"Energie ": "Energy ", "Tank voll. Nur ein verlorenes Level kostet 1 Energie.": "Tank full. Only a lost level costs 1 energy.", "Tank leer. Nächste Energie in ": "Tank empty. Next energy in ", "Nächste Energie in ": "Next energy in ", "Sofort auffüllen · ": "Refill now · ", "↻ Im Querformat neu starten": "↻ Restart in landscape", "↻ Im Hochformat neu starten": "↻ Restart in portrait", "Spiel wirklich neu beginnen? Level, Münzen, Boni und Bestwert werden gelöscht.": "Really start over? Level, coins, boosts and best score will be deleted.", " %, mehr und schnellere Spinnen, seltenere Kisten.": " %, more and faster spiders, rarer crates.", " %. Mit Münzen kannst du an dieser Stelle weiterspielen.": " %. You can use coins to continue from here.", " (inkl. Bonus +": " (incl. bonus +", " Gegner ist online.": " opponent is online.", " Gegner sind online.": " opponents are online.", " Level bis zum Flug in Galaxie ": " more level(s) until the flight to galaxy ", " Noch ": " ", " Punkte": " points", " Spinnen gefangen! +": " spiders caught! +", " Wer auf «Duell starten» tippt, startet für alle.": " Whoever taps «Start duel» starts it for everyone.", " erreicht": " reached", " gegen deine ": " against your ", " gelandet, Ziel «": ", destination «", " geschafft!": " complete!", " geschafft! Du bist in Galaxie ": " complete! You have landed in galaxy ", " von ": " of ", " wird schwieriger: Ziel ": " gets harder: goal ", " · Bestwert ": " · Best ", " · Galaxie ": " · Galaxy ", " · Steine": " · stones", " · Steine auch am Rand": " · stones at the edge too", " · Steine bunt": " · colourful stones", " · Steine bunt, auch am Rand": " · colourful stones, also at the edge", " · er schiesst!": " · it shoots!", " · neu: Steine": " · new: stones", " · neu: bunte Steine": " · new: colourful stones", "+5 Münzen": "+5 coins", ". Du hattest ": ". You had ", "5 Münzen, einmal pro Tag": "5 coins, once a day", "<span class=\"sc-own\">du hast ": "<span class=\"sc-own\">you have ", "Anflug auf: ": "Approaching: ", "Bild konnte nicht geladen werden.": "The picture could not be loaded.", "Boss: ": "Boss: ", "Das Bild ist freigelegt. Level ": "The picture is revealed. Level ", "Dein Gegner hat keine Leben mehr.": "Your opponent has no lives left.", "Dein Gegner war schneller: ": "Your opponent was faster: ", "Dein Gegner war zuerst fertig, in ": "Your opponent finished first, in ", "Deine Figur ist 6 Sekunden schneller.": "Your ship is faster for 6 seconds.", "Deine Linie ist 6 Sekunden geschützt.": "Your line is protected for 6 seconds.", "Du bist verbunden, aber allein. Das Duell kann erst starten, wenn dein Gegner diese Seite angemeldet geöffnet hat.": "You are connected but alone. The duel can only start once your opponent has opened this page while signed in.", "Du hast keine Leben mehr.": "You have no lives left.", "Du warst zuerst fertig, in ": "You finished first, in ", "Duell gewonnen!": "Duel won!", "Duell hier nicht verfügbar. Beide brauchen ein Claude-Konto, müssen angemeldet und zu diesem Spiel eingeladen sein.": "Duel not available here.", "Duell verloren": "Duel lost", "Eigenes Bild gewählt ✓": "Own picture selected ✓", "Erwischt!": "Caught!", "Flug in Galaxie ": "Flight to galaxy ", "Galaxie ": "Galaxy ", "Gegner ": "Opponent ", "Gegner und Geschosse sind 6 Sekunden langsam.": "Enemies and shots are slowed for 6 seconds.", "Gegner und Geschosse stehen 4 Sekunden still.": "Enemies and shots freeze for 4 seconds.", "Gratis": "Free", "Hier weiterspielen · ": "Continue here · ", "Keine Leben mehr. Freigelegt: ": "No lives left. Revealed: ", "Knapp verloren": "Narrowly lost", "Level ": "Level ", "Mission ": "Mission ", "Morgen wieder": "Back tomorrow", "Nochmal versuchen": "Try again", "Nächstes Level": "Next level", "Starter-Paket": "Starter pack", "Tagesgeschenk": "Daily gift", "Tippe, um zu landen und weiterzuspielen.": "Tap to land and keep playing.", "Vollbild geht hier nicht. Tipp: im Browser «Zum Startbildschirm hinzufügen».": "Fullscreen is not available here. Tip: use «Add to home screen» in your browser.", "Vollbild wurde blockiert. Öffne das Spiel in Chrome und versuche es dort.": "Fullscreen was blocked. Open the game in Chrome and try again there.", "Weiter geht es mit 3 Leben": "Continuing with 3 lives", "Wird beim nächsten Levelstart automatisch eingesetzt.": "Used automatically when the next level starts.", "beim nächsten Levelstart": "at the next level start", "je 1 von allen vier Boni": "1 of each of the four boosts", "». +5 Münzen.": "». +5 coins.", "⏳ Noch kein Gegner da": "⏳ No opponent yet", "★ +500 Punkte": "★ +500 points", "⚔ Duell starten": "⚔ Start duel", "❄ Eingefroren": "❄ Frozen", "❄ Spinnen eingefroren": "❄ Spiders frozen", "❤ Extraleben": "❤ Extra life", "❤ Extraleben eingesetzt · Boss: ": "❤ Extra life used · Boss: ", "🐌 Gegner in Zeitlupe": "🐌 Enemies in slow motion", "🐌 Zeitlupe": "🐌 Slow motion", "💥 Alle kleinen Spinnen weg! +": "💥 All small spiders gone! +", "🕷 Spinne gefangen! +500": "🕷 Spider caught! +500", "🛡 Linie geschützt": "🛡 Line protected", "Turbo": "Turbo", "Schutz": "Shield", "Zeitlupe": "Slow motion", "Einfrieren": "Freeze", "Extraleben": "Extra life", "Mech-Spinne": "Mech Spider", "Skorpion": "Scorpion", "Nachtfalter": "Moth", "Stachelstern": "Spike Star", "Hai": "Shark", "Panzerkäfer": "Armour Beetle", "Fledermaus": "Bat", "Krabbe": "Crab", "Adler": "Eagle", "Seeschlange": "Sea Serpent", "Wolf": "Wolf", "Qualle": "Jellyfish", "Feuerdrache": "Fire Dragon", "Rochen": "Ray", "Krake": "Octopus", "Riesenwurm": "Giant Worm", "Tintenfisch": "Squid", "Nashorn": "Rhino", "Wespe": "Wasp", "Stachelhai": "Spike Shark", "Schattenrochen": "Shadow Ray", "Tausendfüssler": "Centipede", "Eisvogel": "Kingfisher", "Kristallpanzer": "Crystal Tank", "Blauer Ringplanet": "Blue ringed planet", "Roter Planet": "Red planet", "Violetter Planet": "Violet planet", "Grüner Ringplanet": "Green ringed planet", "Kristallplanet": "Crystal planet", "Sonnenstern": "Sun star", "Raumstation": "Space station", "Schwarzes Loch": "Black hole", "Spiralnebel": "Spiral nebula"};
-  const ENH = {"⏸ Pause": "⏸ Pause", "Das Spiel ist angehalten.": "The game is paused.", "▶ Weiter": "▶ Resume", "Zum Startbildschirm": "Back to start screen", "Am Computer: Pfeiltaste gedrückt halten, loslassen zum Anhalten.": "On a computer: hold an arrow key, release to stop.", "Angebote": "Offers", "Bild": "Picture", "Bild freigelegt! Tippe, um weiterzufahren.": "Picture revealed! Tap to continue.", "Boni zum Einsetzen": "Boosts to use", "Daumen im Joystick-Bereich aufsetzen, leicht in eine Richtung schieben und halten. Loslassen hält an. Ziehen direkt auf dem Feld geht auch.": "Put your thumb on the joystick, push gently in a direction and hold. Let go to stop. Dragging directly on the field works too.", "Du hast 3 Leben. Trifft ein Gegner deine Linie, verlierst du eines. Ein Extraleben aus einer Kiste gibt eines dazu.": "You have 3 lives. If an enemy hits your line, you lose one. An extra life from a crate gives you one more.", "Duell startet in": "Duel starts in", "Duell: Verbindung wird geprüft …": "Duel: checking connection …", "Eigenes Bild wählen": "Choose your own picture", "Einfrieren einsetzen": "Use freeze", "Einstellungen": "Settings", "Figur": "Ship", "Fliege vom Rand ins Feld und zurück zum Rand, um ein Stück zu schliessen. Am Rand hält deine Figur an: Für den Flug ins Feld neu ansetzen.": "Fly from the edge into the field and back to the edge to close off a piece. Your ship stops at the edge: push again to fly back into the field.", "Für Elise (Beethoven)": "Für Elise (Beethoven)", "In der Halle des Bergkönigs (Grieg)": "In the Hall of the Mountain King (Grieg)", "Joystick": "Joystick", "Kisten einkreisen bringt eine Überraschung: einfrieren, Zeitlupe, Turbo, Schutz, Bombe, Extraleben oder Punkte. Münzen und Diamanten geben Punkte.": "Enclosing a crate brings a surprise: freeze, slow motion, turbo, shield, bomb, extra life or points. Coins and diamonds give points.", "Klassik, pro Level ein anderes Stück": "Classical, a different piece each level", "Kleine Spinnen einkreisen: Sie verschwinden und geben 500 Punkte. Der grosse Boss bleibt immer im verdeckten Feld. In jedem Level wartet ein anderer Boss. Ab Level 2 schiesst der Boss leuchtende Geschosse: Treffen sie deine offene Linie, kostet das ein Leben. Ab Level 9 kommen feste Steinblöcke dazu.": "Enclose small spiders: they vanish and give 500 points. The big boss always stays in the covered area. Every level has a different boss. From level 2 the boss fires glowing shots: if they hit your open line, you lose a life. From level 9 there are fixed stone blocks.", "Laden": "Shop", "Laden schliessen": "Close shop", "Lege mit deiner Figur 88 % des verdeckten Bildes frei, ohne dass ein Gegner deine offene Linie berührt.": "Reveal 88 % of the hidden picture with your ship without letting an enemy touch your open line.", "Level": "Level", "Links": "Left", "Mitte": "Centre", "Rechts": "Right", "Musik": "Music", "Musik ein oder aus": "Music on or off", "Münzen sammelst du im Spiel: Münze 1, Diamant 2, gewonnenes Level 3, geschaffte Mission 5, Tagesgeschenk 5. Gekaufte Boni setzt du im Spiel mit den runden Knöpfen neben dem Joystick ein (am Computer: Tasten 1 bis 4).": "You collect coins in the game: coin 1, diamond 2, level won 3, mission complete 5, daily gift 5. Use bought boosts in the game with the round buttons next to the joystick (on a computer: keys 1 to 4).", "Ode an die Freude (Beethoven)": "Ode to Joy (Beethoven)", "Ruhige Arcade-Schleife": "Calm arcade loop", "Schutz einsetzen": "Use shield", "So wird gespielt": "How to play", "Ton ein oder aus": "Sound on or off", "Turbo einsetzen": "Use turbo", "Türkischer Marsch (Mozart)": "Turkish March (Mozart)", "Vollbild": "Fullscreen", "Zeitlupe einsetzen": "Use slow motion", "Zurück zum Spiel": "Back to game", "⚔ Duell starten": "⚔ Start duel", "Sprache": "Language", "Spielstand": "Progress", "Spiel neu beginnen": "Start over"};
+  const EN = {"✨ Der Funke ist erloschen!": "✨ The spark has gone out!", "⚡ Vom Funken erwischt!": "⚡ Caught by the spark!", "🔥 Die Zündschnur hat dich erreicht!": "🔥 The fuse reached you!", "🔥 Mega-Slice! +1000 · +1 🪙": "🔥 Mega slice! +1000 · +1 🪙", "⚡ Neu: Ein Funke läuft auf dem Rand – bleib nicht stehen!": "⚡ New: a spark runs along the edge – keep moving!", "🔥 Neu: Bleibst du im Feld stehen, brennt eine Zündschnur deine Linie entlang!": "🔥 New: if you stop in the field, a fuse burns along your line!", "Goldener Rahmen! +2 Münzen": "Golden frame! +2 coins", "Neues Bild in der Galerie": "New picture in the gallery", "★ geschafft · ★★ Ziel + 5 % · ★★★ ohne Leben zu verlieren": "★ complete · ★★ goal + 5 % · ★★★ without losing a life", "Hallo Vayosky-Team,": "Hello Vayosky team,", "Version: ": "Version: ", "Gerät: ": "Device: ", "Energie ": "Energy ", "Tank voll. Nur ein verlorenes Level kostet 1 Energie.": "Tank full. Only a lost level costs 1 energy.", "Tank leer. Nächste Energie in ": "Tank empty. Next energy in ", "Nächste Energie in ": "Next energy in ", "Sofort auffüllen · ": "Refill now · ", "↻ Im Querformat neu starten": "↻ Restart in landscape", "↻ Im Hochformat neu starten": "↻ Restart in portrait", "Spiel wirklich neu beginnen? Level, Münzen, Boni und Bestwert werden gelöscht.": "Really start over? Level, coins, boosts and best score will be deleted.", " %, mehr und schnellere Spinnen, seltenere Kisten.": " %, more and faster spiders, rarer crates.", " %. Mit Münzen kannst du an dieser Stelle weiterspielen.": " %. You can use coins to continue from here.", " (inkl. Bonus +": " (incl. bonus +", " Gegner ist online.": " opponent is online.", " Gegner sind online.": " opponents are online.", " Level bis zum Flug in Galaxie ": " more level(s) until the flight to galaxy ", " Noch ": " ", " Punkte": " points", " Spinnen gefangen! +": " spiders caught! +", " Wer auf «Duell starten» tippt, startet für alle.": " Whoever taps «Start duel» starts it for everyone.", " erreicht": " reached", " gegen deine ": " against your ", " gelandet, Ziel «": ", destination «", " geschafft!": " complete!", " geschafft! Du bist in Galaxie ": " complete! You have landed in galaxy ", " von ": " of ", " wird schwieriger: Ziel ": " gets harder: goal ", " · Bestwert ": " · Best ", " · Galaxie ": " · Galaxy ", " · Steine": " · stones", " · Steine auch am Rand": " · stones at the edge too", " · Steine bunt": " · colourful stones", " · Steine bunt, auch am Rand": " · colourful stones, also at the edge", " · er schiesst!": " · it shoots!", " · neu: Steine": " · new: stones", " · neu: bunte Steine": " · new: colourful stones", "+5 Münzen": "+5 coins", ". Du hattest ": ". You had ", "5 Münzen, einmal pro Tag": "5 coins, once a day", "<span class=\"sc-own\">du hast ": "<span class=\"sc-own\">you have ", "Anflug auf: ": "Approaching: ", "Bild konnte nicht geladen werden.": "The picture could not be loaded.", "Boss: ": "Boss: ", "Das Bild ist freigelegt. Level ": "The picture is revealed. Level ", "Dein Gegner hat keine Leben mehr.": "Your opponent has no lives left.", "Dein Gegner war schneller: ": "Your opponent was faster: ", "Dein Gegner war zuerst fertig, in ": "Your opponent finished first, in ", "Deine Figur ist 6 Sekunden schneller.": "Your ship is faster for 6 seconds.", "Deine Linie ist 6 Sekunden geschützt.": "Your line is protected for 6 seconds.", "Du bist verbunden, aber allein. Das Duell kann erst starten, wenn dein Gegner diese Seite angemeldet geöffnet hat.": "You are connected but alone. The duel can only start once your opponent has opened this page while signed in.", "Du hast keine Leben mehr.": "You have no lives left.", "Du warst zuerst fertig, in ": "You finished first, in ", "Duell gewonnen!": "Duel won!", "Duell hier nicht verfügbar. Beide brauchen ein Claude-Konto, müssen angemeldet und zu diesem Spiel eingeladen sein.": "Duel not available here.", "Duell verloren": "Duel lost", "Eigenes Bild gewählt ✓": "Own picture selected ✓", "Erwischt!": "Caught!", "Flug in Galaxie ": "Flight to galaxy ", "Galaxie ": "Galaxy ", "Gegner ": "Opponent ", "Gegner und Geschosse sind 6 Sekunden langsam.": "Enemies and shots are slowed for 6 seconds.", "Gegner und Geschosse stehen 4 Sekunden still.": "Enemies and shots freeze for 4 seconds.", "Gratis": "Free", "Hier weiterspielen · ": "Continue here · ", "Keine Leben mehr. Freigelegt: ": "No lives left. Revealed: ", "Knapp verloren": "Narrowly lost", "Level ": "Level ", "Mission ": "Mission ", "Morgen wieder": "Back tomorrow", "Nochmal versuchen": "Try again", "Nächstes Level": "Next level", "Starter-Paket": "Starter pack", "Tagesgeschenk": "Daily gift", "Tippe, um zu landen und weiterzuspielen.": "Tap to land and keep playing.", "Vollbild geht hier nicht. Tipp: im Browser «Zum Startbildschirm hinzufügen».": "Fullscreen is not available here. Tip: use «Add to home screen» in your browser.", "Vollbild wurde blockiert. Öffne das Spiel in Chrome und versuche es dort.": "Fullscreen was blocked. Open the game in Chrome and try again there.", "Weiter geht es mit 3 Leben": "Continuing with 3 lives", "Wird beim nächsten Levelstart automatisch eingesetzt.": "Used automatically when the next level starts.", "beim nächsten Levelstart": "at the next level start", "je 1 von allen vier Boni": "1 of each of the four boosts", "». +5 Münzen.": "». +5 coins.", "⏳ Noch kein Gegner da": "⏳ No opponent yet", "★ +500 Punkte": "★ +500 points", "⚔ Duell starten": "⚔ Start duel", "❄ Eingefroren": "❄ Frozen", "❄ Spinnen eingefroren": "❄ Spiders frozen", "❤ Extraleben": "❤ Extra life", "❤ Extraleben eingesetzt · Boss: ": "❤ Extra life used · Boss: ", "🐌 Gegner in Zeitlupe": "🐌 Enemies in slow motion", "🐌 Zeitlupe": "🐌 Slow motion", "💥 Alle kleinen Spinnen weg! +": "💥 All small spiders gone! +", "🕷 Spinne gefangen! +500": "🕷 Spider caught! +500", "🛡 Linie geschützt": "🛡 Line protected", "Turbo": "Turbo", "Schutz": "Shield", "Zeitlupe": "Slow motion", "Einfrieren": "Freeze", "Extraleben": "Extra life", "Mech-Spinne": "Mech Spider", "Skorpion": "Scorpion", "Nachtfalter": "Moth", "Stachelstern": "Spike Star", "Hai": "Shark", "Panzerkäfer": "Armour Beetle", "Fledermaus": "Bat", "Krabbe": "Crab", "Adler": "Eagle", "Seeschlange": "Sea Serpent", "Wolf": "Wolf", "Qualle": "Jellyfish", "Feuerdrache": "Fire Dragon", "Rochen": "Ray", "Krake": "Octopus", "Riesenwurm": "Giant Worm", "Tintenfisch": "Squid", "Nashorn": "Rhino", "Wespe": "Wasp", "Stachelhai": "Spike Shark", "Schattenrochen": "Shadow Ray", "Tausendfüssler": "Centipede", "Eisvogel": "Kingfisher", "Kristallpanzer": "Crystal Tank", "Blauer Ringplanet": "Blue ringed planet", "Roter Planet": "Red planet", "Violetter Planet": "Violet planet", "Grüner Ringplanet": "Green ringed planet", "Kristallplanet": "Crystal planet", "Sonnenstern": "Sun star", "Raumstation": "Space station", "Schwarzes Loch": "Black hole", "Spiralnebel": "Spiral nebula"};
+  const ENH = {"Ab Level 15 läuft ein Funke auf dem sicheren Rand: Bleib nicht zu lange am Rand stehen. Nach jedem abgeschnittenen Stück springt er weit weg, ab 75 % erlischt er. Ab Level 20 brennt eine Zündschnur deine offene Linie entlang, wenn du im Feld stehen bleibst. Schneidest du über 30 % auf einmal ab, gibt es einen Mega-Slice.": "From level 15 a spark runs along the safe edge: don't wait at the edge too long. From level 20 a fuse burns along your open line if you stop in the field. After each piece you cut off it jumps far away; at 75 % it goes out. Cut off more than 30 % at once for a mega slice.", "🖼 Galerie": "🖼 Gallery", "Galerie": "Gallery", "Galerie schliessen": "Close gallery", "Schliessen": "Close", "Jedes geschaffte Level legt sein Bild hier ab. Mit 3 Sternen bekommt es einen goldenen Rahmen.": "Every level you complete puts its picture here. With 3 stars it gets a golden frame.", "Hilfe": "Help", "✉ Feedback & Support": "✉ Feedback & support", "Datenschutz": "Privacy", "⏸ Pause": "⏸ Pause", "Das Spiel ist angehalten.": "The game is paused.", "▶ Weiter": "▶ Resume", "Zum Startbildschirm": "Back to start screen", "Am Computer: Pfeiltaste gedrückt halten, loslassen zum Anhalten.": "On a computer: hold an arrow key, release to stop.", "Angebote": "Offers", "Bild": "Picture", "Bild freigelegt! Tippe, um weiterzufahren.": "Picture revealed! Tap to continue.", "Boni zum Einsetzen": "Boosts to use", "Daumen im Joystick-Bereich aufsetzen, leicht in eine Richtung schieben und halten. Loslassen hält an. Ziehen direkt auf dem Feld geht auch.": "Put your thumb on the joystick, push gently in a direction and hold. Let go to stop. Dragging directly on the field works too.", "Du hast 3 Leben. Trifft ein Gegner deine Linie, verlierst du eines. Ein Extraleben aus einer Kiste gibt eines dazu.": "You have 3 lives. If an enemy hits your line, you lose one. An extra life from a crate gives you one more.", "Duell startet in": "Duel starts in", "Duell: Verbindung wird geprüft …": "Duel: checking connection …", "Eigenes Bild wählen": "Choose your own picture", "Einfrieren einsetzen": "Use freeze", "Einstellungen": "Settings", "Figur": "Ship", "Fliege vom Rand ins Feld und zurück zum Rand, um ein Stück zu schliessen. Am Rand hält deine Figur an: Für den Flug ins Feld neu ansetzen.": "Fly from the edge into the field and back to the edge to close off a piece. Your ship stops at the edge: push again to fly back into the field.", "Für Elise (Beethoven)": "Für Elise (Beethoven)", "In der Halle des Bergkönigs (Grieg)": "In the Hall of the Mountain King (Grieg)", "Joystick": "Joystick", "Kisten einkreisen bringt eine Überraschung: einfrieren, Zeitlupe, Turbo, Schutz, Bombe, Extraleben oder Punkte. Münzen und Diamanten geben Punkte.": "Enclosing a crate brings a surprise: freeze, slow motion, turbo, shield, bomb, extra life or points. Coins and diamonds give points.", "Klassik, pro Level ein anderes Stück": "Classical, a different piece each level", "Kleine Spinnen einkreisen: Sie verschwinden und geben 500 Punkte. Der grosse Boss bleibt immer im verdeckten Feld. In jedem Level wartet ein anderer Boss. Ab Level 2 schiesst der Boss leuchtende Geschosse: Treffen sie deine offene Linie, kostet das ein Leben. Ab Level 9 kommen feste Steinblöcke dazu.": "Enclose small spiders: they vanish and give 500 points. The big boss always stays in the covered area. Every level has a different boss. From level 2 the boss fires glowing shots: if they hit your open line, you lose a life. From level 9 there are fixed stone blocks.", "Laden": "Shop", "Laden schliessen": "Close shop", "Lege mit deiner Figur 88 % des verdeckten Bildes frei, ohne dass ein Gegner deine offene Linie berührt.": "Reveal 88 % of the hidden picture with your ship without letting an enemy touch your open line.", "Level": "Level", "Links": "Left", "Mitte": "Centre", "Rechts": "Right", "Musik": "Music", "Musik ein oder aus": "Music on or off", "Münzen sammelst du im Spiel: Münze 1, Diamant 2, gewonnenes Level 3, geschaffte Mission 5, Tagesgeschenk 5. Gekaufte Boni setzt du im Spiel mit den runden Knöpfen neben dem Joystick ein (am Computer: Tasten 1 bis 4).": "You collect coins in the game: coin 1, diamond 2, level won 3, mission complete 5, daily gift 5. Use bought boosts in the game with the round buttons next to the joystick (on a computer: keys 1 to 4).", "Ode an die Freude (Beethoven)": "Ode to Joy (Beethoven)", "Ruhige Arcade-Schleife": "Calm arcade loop", "Schutz einsetzen": "Use shield", "So wird gespielt": "How to play", "Ton ein oder aus": "Sound on or off", "Turbo einsetzen": "Use turbo", "Türkischer Marsch (Mozart)": "Turkish March (Mozart)", "Vollbild": "Fullscreen", "Zeitlupe einsetzen": "Use slow motion", "Zurück zum Spiel": "Back to game", "⚔ Duell starten": "⚔ Start duel", "Sprache": "Language", "Spielstand": "Progress", "Spiel neu beginnen": "Start over"};
   const tr = s => LANG === 'en' && Object.prototype.hasOwnProperty.call(EN, s) ? EN[s] : s;
   document.documentElement.lang = LANG;
   if (LANG === 'en') {           // feste Texte im HTML uebersetzen
@@ -364,7 +414,8 @@
   const el = id => document.getElementById(id);
 
   let cols = 0, rows = 0, cell = 10, U = 20, grid, borderCount = 0;
-  let player, spiders = [], items = [], blocks = [];
+  let player, spiders = [], items = [], blocks = [], sparx = [], fuse = null, fx = [];
+  let revealT = 0, revealCv = null, shimCv = null, shimCtx = null; const REVEAL_SEC = 0.75;
   const solid = v => v === SAFE || v === BLOCK;
   // Der Boss schrumpft mit dem Fortschritt: volle Groesse bis 40 %, danach immer kleiner bis zur Haelfte
   const bossScale = () => Math.max(0.5, Math.min(1, 1 - (pct - 40) * 0.0095));
@@ -424,7 +475,7 @@
   let shots = [], shotT = 4;
   let bgImg = null, userImg = null, coverImg = null;
   let maskCv = null, maskCtx = null, maskData = null, layer = null, lctx = null;
-  let lives = 3, shieldT = 0, flashT = 0;
+  let lives = 3, shieldT = 0, flashT = 0, lostInLvl = 0;
   let score = 0, best = 0, lastSafe = 0, msg = '', msgT = 0;
   try { best = +localStorage.getItem('best') || 0; } catch (err) {}
   const say = t => { msg = t; msgT = 1.8; };
@@ -467,6 +518,8 @@
     for (let y = 0; y < rows; y++) for (let x = 0; x < cols; x++) {
       if (x === 0 || y === 0 || x === cols - 1 || y === rows - 1) { grid[idx(x, y)] = SAFE; borderCount++; }
     }
+    lostInLvl = 0; fuse = null; fx = []; sparx = [];
+    if (level >= SPARX_LVL) for (let k = 0; k < 1; k++) sparx.push({ x: Math.floor(cols * (k ? 0.15 : 0.5)), y: 0, dir: [k ? -1 : 1, 0], acc: 0, wait: 3 + k * 2 });
     const sx = Math.floor(cols / 2), sy = rows - 1;
     player = { x: sx, y: sy, px: sx, py: sy, dir: null, want: null, drawing: false, acc: 0, face: [0, -1], trail: [] };
     const iw = cols * cell * 2, ih = rows * cell * 2;
@@ -480,6 +533,11 @@
     bgImg = userImg ? fitImage(userImg, iw, ih) : pick || makeScene((level - 1) % 6, iw, ih);
     coverImg = makeCover(iw, ih, level);
     el('overlay').classList.remove('won');
+    if (level === SPARX_LVL || level === FUSE_LVL) {
+      const key = level === SPARX_LVL ? 'seenSparx' : 'seenFuse';
+      let seen = false; try { seen = localStorage.getItem(key) === '1'; localStorage.setItem(key, '1'); } catch (err) {}
+      if (!seen) setTimeout(() => { say(level === SPARX_LVL ? tr('⚡ Neu: Ein Funke läuft auf dem Rand – bleib nicht stehen!') : tr('🔥 Neu: Bleibst du im Feld stehen, brennt eine Zündschnur deine Linie entlang!')); msgT = 5; }, 600);
+    }
     // Feste Hindernisse: Steinbloecke, an denen Spieler und Gegner nicht vorbeikommen.
     // Ihre Plaetze werden aus der Levelnummer berechnet und sind deshalb bei jedem Versuch gleich.
     blocks = [];
@@ -605,6 +663,7 @@
   function closeTrail() {
     // Linie wird fest; danach bleibt genau ein offener Bereich verdeckt.
     const n = grid.length, comp = new Int32Array(n).fill(-1), sizes = [], stack = [];
+    const wasSafe = new Uint8Array(n); for (let i = 0; i < n; i++) wasSafe[i] = grid[i] === SAFE ? 1 : 0;
     for (let i = 0; i < n; i++) if (grid[i] === TRAIL) grid[i] = SAFE;
     for (let s = 0; s < n; s++) {
       if (grid[s] !== OPEN || comp[s] >= 0) continue;
@@ -646,15 +705,28 @@
     });
     // Kleine Spinnen in aufgedeckten Bereichen sind gefangen
     const before = spiders.length;
-    spiders = spiders.filter(sp => sp.boss || grid[idx(Math.floor(sp.x), Math.floor(sp.y))] === OPEN);
+    spiders = spiders.filter(sp => { const keep = sp.boss || grid[idx(Math.floor(sp.x), Math.floor(sp.y))] === OPEN; if (!keep) burst(sp.x, sp.y, '#ff9a3c', 14, 1.1); return keep; });
     const caught = before - spiders.length;
+    try {                                   // v68: Maske der neu aufgedeckten Felder fuer den Lichtschimmer
+      if (!revealCv || revealCv.width !== cols || revealCv.height !== rows) { revealCv = document.createElement('canvas'); revealCv.width = cols; revealCv.height = rows; }
+      const rc = revealCv.getContext('2d'), im = rc.createImageData(cols, rows);
+      for (let i = 0; i < n; i++) if (grid[i] === SAFE && !wasSafe[i]) { im.data[i * 4] = im.data[i * 4 + 1] = im.data[i * 4 + 2] = im.data[i * 4 + 3] = 255; }
+      rc.putImageData(im, 0, 0); revealT = REVEAL_SEC;
+    } catch (err) {}
+    for (const z of sparx) { respawnSparx(z); z.wait = 2; }   // v67b: Belohnung fuer jeden Schnitt – Funke weit weg und kurz harmlos
+    const gainedPct = Math.max(0, safe - lastSafe) / Math.max(1, grid.length - borderCount) * 100;
     score += Math.round(Math.max(0, safe - lastSafe) * 5 / (S * S)) + caught * 500; lastSafe = safe;
     if (caught) say(caught === 1 ? tr('🕷 Spinne gefangen! +500') : '🕷 ' + caught + tr(' Spinnen gefangen! +') + caught * 500);
+    if (gainedPct >= 30 && state === 'play') {          // v67: Mega-Slice – mutiger grosser Schnitt
+      score += 1000; wallet += 1; slowT = Math.max(slowT, 3); flashT = Math.max(flashT, 0.15);
+      say(tr('🔥 Mega-Slice! +1000 · +1 🪙')); sfx('bonus');
+      burst(player.x + 0.5, player.y + 0.5, '#ffd23f', 30, 1.5);
+    }
     let loot = 0, crate = false;
     items = items.filter(it => {
       if (grid[idx(it.x, it.y)] !== SAFE) return true;
-      if (it.type === 'coin') { loot += 100; wallet += 1; return false; }
-      if (it.type === 'gem') { loot += 300; wallet += 2; return false; }
+      if (it.type === 'coin') { loot += 100; wallet += 1; burst(it.x + 0.5, it.y + 0.5, '#ffd23f', 8, 0.8); return false; }
+      if (it.type === 'gem') { loot += 300; wallet += 2; burst(it.x + 0.5, it.y + 0.5, '#5ee0e6', 12, 1); return false; }
       crate = true;
       if (it.type === 'slow') { slowT = 6; say('🐌 Gegner in Zeitlupe'); }
       else if (it.type === 'bomb') {
@@ -718,7 +790,9 @@
   function update(dt) {
     time += dt;
     if (flashT > 0) flashT = Math.max(0, flashT - dt);
+    if (revealT > 0) revealT = Math.max(0, revealT - dt);
     if (msgT > 0) msgT = Math.max(0, msgT - dt);
+    for (let i = fx.length - 1; i >= 0; i--) { const q = fx[i]; q.x += q.vx * dt; q.y += q.vy * dt; q.vx *= 0.93; q.vy *= 0.93; q.life -= dt; if (q.life <= 0) fx.splice(i, 1); }
     if (state !== 'play') return;
     if (freezeT > 0) freezeT = Math.max(0, freezeT - dt);
     if (speedT > 0) speedT = Math.max(0, speedT - dt);
@@ -741,6 +815,31 @@
         if (shieldT <= 0 && spiderHitsTrail(s)) { loseLife(); return; }
       }
     }
+
+    // v67: Funken laufen auf dem sicheren Rand; Zuendschnur brennt die Linie entlang, wenn der Spieler im Feld stehen bleibt
+    if (sparx.length && pct >= SPARX_OFF) {          // v67c: ab 75 % erlischt der Funke (der Rand wird sonst zu kurz)
+      for (const z of sparx) burst(z.x + 0.5, z.y + 0.5, '#ff3d6e', 18, 1);
+      sparx = []; say(tr('✨ Der Funke ist erloschen!'));
+    }
+    if (sparx.length && freezeT <= 0) {
+      for (const z of sparx) {
+        if (z.wait > 0) { z.wait -= dt; continue; }
+        z.acc += dt * BASE_SPEED * 0.32 * (slowT > 0 ? 0.4 : 1);
+        while (z.acc >= 1) { z.acc -= 1; stepSparx(z); }
+        if (shieldT <= 0 && !player.drawing && z.wait <= 0 && Math.abs(z.x - player.x) + Math.abs(z.y - player.y) <= 1) {
+          say(tr('⚡ Vom Funken erwischt!')); respawnSparx(z); loseLife(); return;
+        }
+      }
+    }
+    if (level >= FUSE_LVL && player.drawing && player.trail.length > 1) {
+      if (!fuse) fuse = { idle: 0, pos: 0 };
+      if (player.dir) fuse.idle = 0; else fuse.idle += dt;
+      if (fuse.idle > 1 && freezeT <= 0 && shieldT <= 0) {
+        if (!fuse.lit) { fuse.lit = true; sfx('shoot'); }
+        fuse.pos += dt * FUSE_SPEED * (slowT > 0 ? 0.4 : 1);
+        if (fuse.pos >= player.trail.length - 1) { say(tr('🔥 Die Zündschnur hat dich erreicht!')); fuse = null; loseLife(); return; }
+      }
+    } else fuse = null;
 
     // Boss greift an: ab Level 2 schiesst er in Abstaenden, ab Level 5 zielt er auf die offene Linie
     const boss = spiders.find(sp => sp.boss), slowF = slowT > 0 ? 0.4 : 1;
@@ -771,8 +870,37 @@
     updateHud();
   }
 
+  const SPARX_LVL = 15, SPARX_OFF = 75, FUSE_LVL = 20, FUSE_SPEED = 8 * S;
+  function burst(x, y, col, n = 12, sp = 1) {
+    for (let i = 0; i < n && fx.length < 140; i++) { const a = Math.random() * Math.PI * 2, v = (3 + Math.random() * 7) * S * sp; fx.push({ x, y, vx: Math.cos(a) * v, vy: Math.sin(a) * v, r: 0.25 + Math.random() * 0.3, life: 0.4 + Math.random() * 0.35, max: 0.75, col }); }
+  }
+  const edgeOk = (x, y, nx, ny) => nx >= 0 && ny >= 0 && nx < cols && ny < rows && grid[idx(nx, ny)] === SAFE && shareOpen(x, y, nx, ny);
+  function stepSparx(z) {
+    const dirs = [[1, 0], [-1, 0], [0, 1], [0, -1]];
+    const ok = dirs.filter(d => edgeOk(z.x, z.y, z.x + d[0], z.y + d[1]));
+    if (!ok.length) { respawnSparx(z); return; }
+    const fwd = ok.filter(d => !(d[0] === -z.dir[0] && d[1] === -z.dir[1]));
+    const pool = fwd.length ? fwd : ok;
+    const straight = pool.find(d => d[0] === z.dir[0] && d[1] === z.dir[1]);
+    z.dir = straight && Math.random() > 0.15 ? straight : pool[Math.floor(Math.random() * pool.length)];
+    z.x += z.dir[0]; z.y += z.dir[1];
+  }
+  function respawnSparx(z) {         // an eine Randstelle weit weg vom Spieler setzen
+    let best = null, bd = -1;
+    for (let k = 0; k < 400; k++) {
+      const i = Math.floor(Math.random() * grid.length), x = i % cols, y = Math.floor(i / cols);
+      if (grid[i] !== SAFE) continue;
+      let edge = false;
+      for (const [dx, dy] of [[1, 0], [-1, 0], [0, 1], [0, -1]]) if (edgeOk(x, y, x + dx, y + dy)) { edge = true; break; }
+      if (!edge) continue;
+      const d = Math.abs(x - player.x) + Math.abs(y - player.y);
+      if (d > bd) { bd = d; best = [x, y]; }
+    }
+    if (best) { z.x = best[0]; z.y = best[1]; }
+    z.wait = Math.max(z.wait, 1.5); z.acc = 0;
+  }
   function loseLife() {
-    lives--; flashT = 0.4; sfx('hit'); shots = [];
+    lostInLvl++; lives--; flashT = 0.4; sfx('hit'); shots = [];
     if (lives <= 0) { updateHud(); endGame(false); return; }
     const p = player;
     for (let i = 0; i < grid.length; i++) if (grid[i] === TRAIL) grid[i] = OPEN;
@@ -894,6 +1022,19 @@
       score += bonus; bonusTxt = tr(' (inkl. Bonus +') + bonus + ')';
       wallet += 3; saveShop();
     }
+    el('oStars').classList.add('hidden');
+    if (won && !duel && !userImg) {        // v66: Sterne und Galerie
+      const bt = BOSS_ORDER[(level - 1) % BOSS_ORDER.length], n = 1 + (pct >= Math.min(99, goal() + 5) ? 1 : 0) + (lostInLvl === 0 ? 1 : 0);
+      const had = galStars[bt] || 0;
+      if (n > had) galStars[bt] = n;
+      let extra = '';
+      if (n === 3 && !galGold[bt]) { galGold[bt] = 1; wallet += 2; saveShop(); extra = tr('Goldener Rahmen! +2 Münzen'); }
+      else if (!had) extra = tr('Neues Bild in der Galerie');
+      saveGal();
+      el('oStars').innerHTML = '★'.repeat(n) + '<span style="opacity:.25">' + '★'.repeat(3 - n) + '</span>' + (extra ? '<small>' + extra + '</small>' : '') +
+        '<small>' + tr('★ geschafft · ★★ Ziel + 5 % · ★★★ ohne Leben zu verlieren') + '</small>';
+      el('oStars').classList.remove('hidden');
+    }
     if (score > best) { best = score; try { localStorage.setItem('best', String(best)); } catch (err) {} }
     el('oText').textContent += ' ★ ' + score + tr(' Punkte') + bonusTxt + tr(' · Bestwert ') + best + '.';
     updateHud();
@@ -933,6 +1074,27 @@
     el('oBtn').style.opacity = el('oBtn').disabled ? '.4' : '';
   }
   setInterval(() => { if (!el('overlay').classList.contains('hidden')) renderEnergy(); }, 1000);
+
+  // v66: Galerie – pro Boss das freigelegte Bild, beste Sterne, goldener Rahmen bei 3 Sternen
+  let galStars = {}, galGold = {};
+  try { const g = JSON.parse(localStorage.getItem('gallery') || 'null'); if (g) { galStars = g.s || {}; galGold = g.g || {}; } } catch (err) {}
+  function saveGal() { try { localStorage.setItem('gallery', JSON.stringify({ s: galStars, g: galGold })); } catch (err) {} galCountTxt(); }
+  const picName = bt => { for (const c of BOSS[bt].pic) if (typeof c === 'string') return c; return null; };
+  function galCountTxt() {
+    const n = BOSS.filter((_, i) => galStars[i]).length, t = n + '/' + BOSS.length;
+    if (el('galCount')) el('galCount').textContent = t;
+    if (el('galPill')) el('galPill').textContent = t;
+  }
+  function renderGal() {
+    let h = '';
+    BOSS.forEach((b, i) => {
+      const st = galStars[i] || 0, nm = picName(i);
+      if (!st || !nm) { h += '<div class="gt lock"><span>🔒</span>' + tr('Level ') + (i + 1) + '</div>'; return; }
+      h += '<button type="button" class="gt' + (st === 3 ? ' gold' : '') + '" data-i="' + i + '"><img loading="lazy" src="img/' + nm + '.jpg" alt=""><span class="gs"><b>' +
+           '★'.repeat(st) + '<span style="opacity:.3">' + '★'.repeat(3 - st) + '</span></b>' + tr('Level ') + (i + 1) + ' · ' + b.name + '</span></button>';
+    });
+    el('galGrid').innerHTML = h; galCountTxt();
+  }
 
   // v60: Passt das Feld nicht zur Lage des Handys, kann der Spieler das Level im neuen Format neu starten
   function checkRot() {
@@ -1054,9 +1216,20 @@
     g.fillStyle = gr; g.fillRect(0, 0, W, H);
     const glow = g.createRadialGradient(W / 2, H * 0.45, 0, W / 2, H * 0.45, Math.max(W, H) * 0.6);
     glow.addColorStop(0, mix(0.55, 0.35)); glow.addColorStop(1, mix(0.2, 0)); g.fillStyle = glow; g.fillRect(0, 0, W, H);
-    for (let i = 0; i < 110; i++) {
-      g.fillStyle = 'rgba(255,255,255,' + (0.25 + Math.random() * 0.55) + ')';
-      g.beginPath(); g.arc(Math.random() * W, Math.random() * H, W * (0.0012 + Math.random() * 0.0026), 0, TAU); g.fill();
+    // v68: feines Raster, zwei Nebelwolken und farbige Sterne (einmal pro Level gezeichnet)
+    g.strokeStyle = mix(0.7, 0.10); g.lineWidth = Math.max(1, W * 0.0016);
+    const stp = Math.max(24, Math.round(W / 16));
+    g.beginPath();
+    for (let x = stp / 2; x <= W; x += stp) { g.moveTo(x, 0); g.lineTo(x, H); }
+    for (let y = stp / 2; y <= H; y += stp) { g.moveTo(0, y); g.lineTo(W, y); }
+    g.stroke();
+    for (const [nx, ny, nr, na] of [[0.22, 0.25, 0.4, 0.22], [0.8, 0.72, 0.45, 0.18]]) {
+      const ng = g.createRadialGradient(W * nx, H * ny, 0, W * nx, H * ny, Math.max(W, H) * nr);
+      ng.addColorStop(0, mix(0.9, na)); ng.addColorStop(1, 'rgba(0,0,0,0)'); g.fillStyle = ng; g.fillRect(0, 0, W, H);
+    }
+    for (let i = 0; i < 140; i++) {
+      g.fillStyle = i % 9 === 0 ? 'rgba(127,232,255,.9)' : i % 13 === 0 ? 'rgba(255,210,63,.9)' : 'rgba(255,255,255,' + (0.25 + Math.random() * 0.6) + ')';
+      g.beginPath(); g.arc(Math.random() * W, Math.random() * H, W * (0.0012 + Math.random() * 0.0028), 0, TAU); g.fill();
     }
     if (BSHEET.ok) {
       const sz = Math.min(W, H) * 0.86, t = document.createElement('canvas'); t.width = t.height = 192;
@@ -1391,7 +1564,11 @@
       ctx.lineTo(side * R * 1.9 * Math.cos(a), R * 1.9 * Math.sin(a) + R * 0.45);
       ctx.stroke();
     }
-    ctx.fillStyle = frozen ? '#6cc4ff' : (s.boss ? '#e5484d' : '#f08a3c');
+    const sgr = ctx.createRadialGradient(-R * 0.2, -R * 0.1, R * 0.08, 0, R * 0.15, R * 0.78);
+    if (frozen) { sgr.addColorStop(0, '#e0f2fe'); sgr.addColorStop(1, '#0284c7'); }
+    else if (s.boss) { sgr.addColorStop(0, '#fda4af'); sgr.addColorStop(0.5, '#e11d48'); sgr.addColorStop(1, '#881337'); }
+    else { sgr.addColorStop(0, '#fde047'); sgr.addColorStop(0.55, '#f97316'); sgr.addColorStop(1, '#9a3412'); }
+    ctx.fillStyle = sgr;
     ctx.beginPath(); ctx.arc(0, R * 0.15, R * 0.72, 0, Math.PI * 2); ctx.fill();
     ctx.beginPath(); ctx.arc(0, -R * 0.62, R * 0.42, 0, Math.PI * 2); ctx.fill();
     ctx.fillStyle = '#0b1220';
@@ -1406,6 +1583,13 @@
     ctx.clearRect(0, 0, (cols + PADC) * cell, (rows + PADC) * cell);
     ctx.save(); ctx.translate(pad, pad);
     drawField();
+    // v68: Neonrahmen in der Farbe des Levels (zwei Striche statt Schatten – schont das Handy)
+    const fc = SHOT_COL[bossType] || '#5ee0c0', fw = cols * cell, fh = rows * cell, fo = U * 0.55;
+    ctx.globalAlpha = 0.18; ctx.strokeStyle = fc; ctx.lineWidth = U * 0.6;
+    ctx.strokeRect(-fo, -fo, fw + fo * 2, fh + fo * 2);
+    ctx.globalAlpha = 0.9 + 0.1 * Math.sin(time * 2); ctx.lineWidth = Math.max(1.5, U * 0.22);
+    ctx.strokeRect(-fo, -fo, fw + fo * 2, fh + fo * 2);
+    ctx.globalAlpha = 1;
     ctx.restore();
   }
 
@@ -1429,10 +1613,29 @@
       if (x + 1 < cols && (grid[idx(x + 1, y)] !== SAFE) !== a) { ctx.moveTo((x + 1) * cell, y * cell); ctx.lineTo((x + 1) * cell, (y + 1) * cell); }
       if (y + 1 < rows && (grid[idx(x, y + 1)] !== SAFE) !== a) { ctx.moveTo(x * cell, (y + 1) * cell); ctx.lineTo((x + 1) * cell, (y + 1) * cell); }
     }
-    ctx.strokeStyle = 'rgba(255,255,255,.75)'; ctx.lineWidth = Math.max(1.5, U * 0.14); ctx.lineCap = 'square'; ctx.stroke();
+    // v68: leuchtende Schnittkante – breiter farbiger Schein und heller Kern
+    ctx.lineCap = 'square';
+    ctx.globalAlpha = 0.35 + 0.1 * Math.sin(time * 3); ctx.strokeStyle = SHOT_COL[bossType] || '#5ee0c0'; ctx.lineWidth = Math.max(4, U * 0.7); ctx.stroke();
+    ctx.globalAlpha = 1; ctx.strokeStyle = '#eafcff'; ctx.lineWidth = Math.max(1.5, U * 0.16); ctx.stroke();
+    // v68: Lichtschimmer ueber dem frisch aufgedeckten Stueck
+    if (revealT > 0 && revealCv) {
+      const k = 1 - revealT / REVEAL_SEC, tw = layer.width, th = layer.height;
+      if (!shimCv || shimCv.width !== tw || shimCv.height !== th) { shimCv = document.createElement('canvas'); shimCv.width = tw; shimCv.height = th; shimCtx = shimCv.getContext('2d'); }
+      const sc = shimCtx, band = (tw + th) * 0.25, x0 = -band + k * (tw + th + band * 2);
+      sc.globalCompositeOperation = 'source-over'; sc.clearRect(0, 0, tw, th);
+      const gl = sc.createLinearGradient(x0 - band, 0, x0 + band, th * 0.6);
+      gl.addColorStop(0, 'rgba(255,255,255,0)'); gl.addColorStop(0.5, 'rgba(255,255,240,' + (0.55 * (1 - k * 0.5)) + ')'); gl.addColorStop(1, 'rgba(255,255,255,0)');
+      sc.fillStyle = gl; sc.fillRect(0, 0, tw, th);
+      sc.globalCompositeOperation = 'destination-in'; sc.imageSmoothingEnabled = false; sc.drawImage(revealCv, 0, 0, tw, th);
+      ctx.save(); ctx.globalCompositeOperation = 'lighter'; ctx.drawImage(shimCv, 0, 0, w, h); ctx.restore();
+    }
     for (const b of blocks) {          // Stein: Grundfarbe, helle Kante oben/links, dunkle Kante unten/rechts, Umriss
       const [base, lite, dark] = b.col, e = Math.max(1.5, U * 0.2), c = cell;
-      ctx.fillStyle = base;
+      let bx0 = 1e9, by0 = 1e9, bx1 = -1, by1 = -1;
+      for (const [cx, cy] of b.cells) { bx0 = Math.min(bx0, cx); by0 = Math.min(by0, cy); bx1 = Math.max(bx1, cx + 1); by1 = Math.max(by1, cy + 1); }
+      const sgd = ctx.createLinearGradient(bx0 * c, by0 * c, bx1 * c, by1 * c);     // v68: Licht von oben links
+      sgd.addColorStop(0, lite); sgd.addColorStop(0.35, base); sgd.addColorStop(1, dark);
+      ctx.fillStyle = sgd;
       for (const [cx, cy] of b.cells) ctx.fillRect(cx * c, cy * c, c + 0.5, c + 0.5);
       const has = (x, y) => b.set.has(idx(x, y));
       ctx.fillStyle = lite;
@@ -1463,15 +1666,19 @@
     for (const it of items) {
       const cx = (it.x + 0.5) * cell, cy = (it.y + 0.5) * cell, r = U * (0.85 + Math.sin(time * 4) * 0.07);
       if (it.type === 'coin') {
-        ctx.beginPath(); ctx.arc(cx, cy, U * 0.62, 0, Math.PI * 2); ctx.fillStyle = '#ffd23f'; ctx.fill();
-        ctx.strokeStyle = '#b8860b'; ctx.lineWidth = Math.max(1, U * 0.14); ctx.stroke();
-        ctx.beginPath(); ctx.arc(cx, cy, U * 0.3, 0, Math.PI * 2); ctx.stroke();
+        const cg = ctx.createRadialGradient(cx - U * 0.2, cy - U * 0.2, U * 0.05, cx, cy, U * 0.65);
+        cg.addColorStop(0, '#fff7b2'); cg.addColorStop(0.55, '#ffd23f'); cg.addColorStop(1, '#d97706');
+        ctx.beginPath(); ctx.arc(cx, cy, U * (0.62 + Math.sin(time * 4 + it.x) * 0.04), 0, Math.PI * 2); ctx.fillStyle = cg; ctx.fill();
+        ctx.strokeStyle = '#fef08a'; ctx.lineWidth = Math.max(1, U * 0.1); ctx.stroke();
+        ctx.fillStyle = '#b45309'; ctx.fillRect(cx - U * 0.08, cy - U * 0.26, U * 0.16, U * 0.52);
         continue;
       }
       if (it.type === 'gem') {
         const g = U * 0.8;
         ctx.beginPath(); ctx.moveTo(cx, cy - g); ctx.lineTo(cx + g * 0.8, cy - g * 0.2); ctx.lineTo(cx, cy + g); ctx.lineTo(cx - g * 0.8, cy - g * 0.2); ctx.closePath();
-        ctx.fillStyle = '#5ee0e6'; ctx.fill(); ctx.strokeStyle = '#ffffff'; ctx.lineWidth = Math.max(1, U * 0.12); ctx.stroke();
+        const gg = ctx.createLinearGradient(cx - g, cy - g, cx + g, cy + g);
+        gg.addColorStop(0, '#e0f2fe'); gg.addColorStop(0.45, '#38bdf8'); gg.addColorStop(1, '#0284c7');
+        ctx.fillStyle = gg; ctx.fill(); ctx.strokeStyle = '#ffffff'; ctx.lineWidth = Math.max(1, U * 0.12); ctx.stroke();
         ctx.beginPath(); ctx.moveTo(cx - g * 0.8, cy - g * 0.2); ctx.lineTo(cx + g * 0.8, cy - g * 0.2); ctx.stroke();
         continue;
       }
@@ -1490,14 +1697,45 @@
       else { ctx.fillStyle = SHOT_COL[bossType]; ctx.fillRect(px2 - z * 0.3, py2 - z * 0.3, z * 0.6, z * 0.6); }
       ctx.restore(); ctx.imageSmoothingEnabled = true;
     }
+    for (const z of sparx) {              // v67: Funke auf dem Rand
+      const zx = (z.x + 0.5) * cell, zy = (z.y + 0.5) * cell, zr = U * (0.9 + Math.sin(time * 20) * 0.2);
+      ctx.save(); ctx.globalAlpha = z.wait > 0 ? 0.35 + 0.3 * Math.sin(time * 10) : 1;
+      ctx.strokeStyle = '#fff7b2'; ctx.lineWidth = Math.max(1.5, U * 0.16);
+      ctx.beginPath();
+      for (let k = 0; k < 6; k++) { const a = time * 9 + k * Math.PI / 3; ctx.moveTo(zx, zy); ctx.lineTo(zx + Math.cos(a) * zr * 1.4, zy + Math.sin(a) * zr * 1.4); }
+      ctx.stroke();
+      ctx.fillStyle = '#ff3d6e'; ctx.beginPath(); ctx.arc(zx, zy, zr * 0.55, 0, Math.PI * 2); ctx.fill();
+      ctx.fillStyle = '#ffffff'; ctx.beginPath(); ctx.arc(zx, zy, zr * 0.25, 0, Math.PI * 2); ctx.fill();
+      ctx.restore();
+    }
+    for (const q of fx) {                 // Teilchen (ohne Schatten, damit es auf dem Handy fluessig bleibt)
+      ctx.globalAlpha = Math.max(0, Math.min(1, q.life / q.max)); ctx.fillStyle = q.col;
+      ctx.beginPath(); ctx.arc(q.x * cell, q.y * cell, U * q.r, 0, Math.PI * 2); ctx.fill();
+    }
+    ctx.globalAlpha = 1;
     const p = player, t = p.dir ? Math.min(1, p.acc) : 1;
     const px = (p.px + (p.x - p.px) * t + 0.5) * cell, py = (p.py + (p.y - p.py) * t + 0.5) * cell;
     if (p.trail.length > 1) {
-      ctx.strokeStyle = shieldT > 0 ? '#b9f27c' : '#ffd23f'; ctx.lineWidth = Math.max(2, U * 0.28); ctx.lineCap = 'round'; ctx.lineJoin = 'round';
+      ctx.save();
+      const tc = shieldT > 0 ? '#b9f27c' : '#ffd23f';
+      ctx.shadowColor = tc; ctx.shadowBlur = U * 0.6;
+      ctx.strokeStyle = tc; ctx.lineWidth = Math.max(2, U * 0.28); ctx.lineCap = 'round'; ctx.lineJoin = 'round';
       ctx.beginPath();
       ctx.moveTo((p.trail[0][0] + 0.5) * cell, (p.trail[0][1] + 0.5) * cell);
       for (let k = 1; k < p.trail.length - 1; k++) ctx.lineTo((p.trail[k][0] + 0.5) * cell, (p.trail[k][1] + 0.5) * cell);
       ctx.lineTo(px, py); ctx.stroke();
+      ctx.shadowBlur = 0; ctx.strokeStyle = '#ffffff'; ctx.lineWidth = Math.max(1, U * 0.09); ctx.stroke();
+      if (fuse && fuse.pos > 0) {         // v67: abgebrannter Teil der Linie und Flamme
+        const n2 = Math.min(p.trail.length - 1, Math.floor(fuse.pos));
+        ctx.strokeStyle = '#3b0d0d'; ctx.lineWidth = Math.max(2, U * 0.3);
+        ctx.beginPath(); ctx.moveTo((p.trail[0][0] + 0.5) * cell, (p.trail[0][1] + 0.5) * cell);
+        for (let k = 1; k <= n2; k++) ctx.lineTo((p.trail[k][0] + 0.5) * cell, (p.trail[k][1] + 0.5) * cell);
+        ctx.stroke();
+        const fxp = (p.trail[n2][0] + 0.5) * cell, fyp = (p.trail[n2][1] + 0.5) * cell, fr = U * (0.7 + Math.sin(time * 25) * 0.15);
+        ctx.fillStyle = '#ff6b35'; ctx.beginPath(); ctx.arc(fxp, fyp, fr, 0, Math.PI * 2); ctx.fill();
+        ctx.fillStyle = '#ffe066'; ctx.beginPath(); ctx.arc(fxp, fyp, fr * 0.5, 0, Math.PI * 2); ctx.fill();
+      }
+      ctx.restore();
     }
     if (state !== 'won' && !R3D) drawPlane(px, py, p.face);
     if (flashT > 0) { ctx.fillStyle = 'rgba(229,72,77,' + (flashT * 0.9) + ')'; ctx.fillRect(0, 0, w, h); }
@@ -1774,14 +2012,18 @@
   const AUTO = ['ode', 'elise', 'marsch', 'berg'];
   let tuneSel = 'auto', curSong = '', mIdx = 0, mLoops = 0;
   try { tuneSel = localStorage.getItem('tune') || 'auto'; } catch (err) {}
+  // v66: gegen Levelende (noch 15 % bis zum Ziel) etwa 10 % schneller, mit nur einem Leben weitere 5 %; sanfter Uebergang
+  let mTf = 1;
   function musicTick() {
-    if (!ac || muted || !musicOn || state !== 'play' || paused || ac.state !== 'running') { mNext = 0; return; }
+    if (!ac || muted || !musicOn || state !== 'play' || paused || ac.state !== 'running') { mNext = 0; mTf = 1; return; }
+    const tfWant = 1 + (pct >= goal() - 15 ? 0.1 : 0) + (lives === 1 ? 0.05 : 0);
+    mTf += Math.max(-0.01, Math.min(0.004, tfWant - mTf));
     if (mNext < ac.currentTime) mNext = ac.currentTime + 0.05;
     const want = tuneSel === 'auto' ? AUTO[(level - 1) % AUTO.length] : tuneSel;
     if (want !== curSong) { curSong = want; mIdx = 0; mLoops = 0; mStep = 0; }
     try {
       if (curSong === 'arcade') {
-        const stepLen = 0.17;
+        const stepLen = 0.17 / mTf;
         while (mNext < ac.currentTime + 0.3) {
           const st = mStep % 16, bar = Math.floor(mStep / 16) % 4, ch = CHORDS[bar], at = mNext - ac.currentTime;
           if (st % 8 === 0) tone(ch[0] / 2, at, stepLen * 5, 'sine', 0.09);
@@ -1793,7 +2035,7 @@
       }
       const sg = SONGS[curSong] || SONGS.ode;
       // "Bergkoenig" wird wie im Original von Runde zu Runde etwas schneller, dann beginnt es wieder ruhig
-      const step = sg.faster ? Math.max(0.085, sg.step * Math.pow(0.93, mLoops % 8)) : sg.step;
+      const step = (sg.faster ? Math.max(0.085, sg.step * Math.pow(0.93, mLoops % 8)) : sg.step) / mTf;
       while (mNext < ac.currentTime + 0.3) {
         const nt = sg.n[mIdx], len = nt[1] * step;
         if (nt[0]) tone(440 * Math.pow(2, (nt[0] - 69) / 12), mNext - ac.currentTime, Math.min(len * 0.92, 0.9), 'triangle', 0.05);
@@ -2177,10 +2419,10 @@
           }
           if (pts.length > 2) shapes.push(new THREE.Shape(pts.map(([x, y]) => new THREE.Vector2(x - cols / 2, y - rows / 2))));
         }
-        const top = new THREE.MeshStandardMaterial({ color: b.col[0], roughness: 0.45, metalness: 0.1, emissive: b.col[0], emissiveIntensity: 0.22 });
+        const top = new THREE.MeshStandardMaterial({ color: b.col[0], roughness: 0.35, metalness: 0.25, emissive: b.col[0], emissiveIntensity: 0.08 });   // v68: mehr Kontrast
         const side = new THREE.MeshStandardMaterial({ color: b.col[2], roughness: 0.6, metalness: 0.05 });
         top.color.convertSRGBToLinear(); top.emissive.convertSRGBToLinear(); side.color.convertSRGBToLinear();
-        const geo = new THREE.ExtrudeGeometry(shapes, { depth: H3, bevelEnabled: true, bevelThickness: 0.12, bevelSize: 0.1, bevelSegments: 2 });
+        const geo = new THREE.ExtrudeGeometry(shapes, { depth: H3, bevelEnabled: true, bevelThickness: 0.3, bevelSize: 0.3, bevelSegments: 3 });
         const mesh = new THREE.Mesh(geo, [top, side]);
         mesh.rotation.x = Math.PI / 2; mesh.position.y = H3;
         T.stones.add(mesh);
@@ -2261,6 +2503,27 @@
   });
   el('refillBtn').addEventListener('pointerdown', e => e.stopPropagation());
   renderEnergy();
+  // v65: Feedback per E-Mail (die App selbst sammelt keine Daten) und Link zur Datenschutzerklaerung
+  const APP_VER = 'v68', SUPPORT = 'vayosky.games@gmail.com';
+  el('mailBtn').addEventListener('click', () => {
+    const body = tr('Hallo Vayosky-Team,') + '\n\n\n\n---\n' + tr('Version: ') + APP_VER + ' · Level ' + level + '\n' + tr('Gerät: ') + navigator.userAgent;
+    location.href = 'mailto:' + SUPPORT + '?subject=' + encodeURIComponent('Space Slice – Feedback') + '&body=' + encodeURIComponent(body);
+  });
+  el('privBtn').addEventListener('click', () => { window.open(LANG === 'en' ? 'https://vayosky.ch/privacy' : 'https://vayosky.ch/datenschutz', '_blank'); });
+  el('galOpen').addEventListener('click', () => { renderGal(); el('galView').classList.remove('hidden'); });
+  el('galOpen').addEventListener('pointerdown', e => e.stopPropagation());
+  el('galClose').addEventListener('click', () => el('galView').classList.add('hidden'));
+  el('galHome').addEventListener('click', () => el('galView').classList.add('hidden'));
+  el('galGrid').addEventListener('click', e => {
+    const t = e.target && e.target.closest ? e.target.closest('[data-i]') : null; if (!t) return;
+    const i = +t.getAttribute('data-i'), st = galStars[i] || 0, im = el('galBigImg');
+    im.src = 'img/' + picName(i) + '.jpg'; im.classList.toggle('gold', st === 3);
+    el('galBigT').textContent = tr('Level ') + (i + 1) + ' · ' + BOSS[i].name + '  ' + '★'.repeat(st);
+    el('galBig').classList.remove('hidden');
+  });
+  el('galBigClose').addEventListener('click', () => el('galBig').classList.add('hidden'));
+  el('galBig').addEventListener('click', e => { if (e.target === el('galBig')) el('galBig').classList.add('hidden'); });
+  galCountTxt();
   el('pauseBtn').addEventListener('click', () => setPause(true));
   el('pauseBtn').addEventListener('pointerdown', e => e.stopPropagation());
   el('resumeBtn').addEventListener('click', () => { initAudio(); setPause(false); });
@@ -2273,7 +2536,7 @@
   window.addEventListener('keydown', e => { if ((e.key === 'p' || e.key === 'P' || e.key === 'Escape') && state === 'play') setPause(!paused); });
   el('resetBtn').addEventListener('click', () => {
     if (!window.confirm(tr('Spiel wirklich neu beginnen? Level, Münzen, Boni und Bestwert werden gelöscht.'))) return;
-    try { ['lastLvl', 'best', 'shop', 'freeDay', 'energy'].forEach(k => localStorage.removeItem(k)); } catch (err) {}
+    try { ['lastLvl', 'best', 'shop', 'freeDay', 'energy', 'gallery'].forEach(k => localStorage.removeItem(k)); } catch (err) {}
     location.reload();
   });
   requestAnimationFrame(loop);
