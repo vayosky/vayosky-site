@@ -439,6 +439,7 @@
   let cols = 0, rows = 0, cell = 10, U = 20, grid, borderCount = 0;
   let player, spiders = [], items = [], blocks = [], sparx = [], fuse = null, fx = [];
   let replay = null, galSel = -1;      // v69: Wiederholung aus der Galerie
+  let edgePath = null, edgeKey = '', lowFx = false, fpsAcc = 0, fpsN = 0;   // v74: Leistung
   let revealT = 0, revealCv = null, shimCv = null, shimCtx = null; const REVEAL_SEC = 0.75;
   const solid = v => v === SAFE || v === BLOCK;
   // Der Boss schrumpft mit dem Fortschritt: volle Groesse bis 40 %, danach immer kleiner bis zur Haelfte
@@ -1649,7 +1650,8 @@
     if (bgImg) ctx.drawImage(bgImg, 0, 0, w, h); else { ctx.fillStyle = '#1fa98a'; ctx.fillRect(0, 0, w, h); }
     // Deckbild ueber eine Maske in Feldaufloesung legen (keine feinen Streifen zwischen den Zeilen)
     const md = maskData.data;
-    for (let i = 0; i < grid.length; i++) md[i * 4 + 3] = grid[i] !== SAFE ? 255 : 0;
+    let nSafe = 0;
+    for (let i = 0; i < grid.length; i++) { const sf = grid[i] === SAFE; md[i * 4 + 3] = sf ? 0 : 255; if (sf) nSafe++; }
     maskCtx.putImageData(maskData, 0, 0);
     lctx.globalCompositeOperation = 'source-over';
     lctx.clearRect(0, 0, layer.width, layer.height);
@@ -1658,26 +1660,30 @@
     lctx.globalCompositeOperation = 'destination-in'; lctx.imageSmoothingEnabled = false;
     lctx.drawImage(maskCv, 0, 0, layer.width, layer.height);
     ctx.drawImage(layer, 0, 0, w, h);
-    ctx.beginPath();       // helle Kante zwischen Deckbild und freigelegtem Bild
-    for (let y = 0; y < rows; y++) for (let x = 0; x < cols; x++) {
-      const a = grid[idx(x, y)] !== SAFE;
-      if (x + 1 < cols && (grid[idx(x + 1, y)] !== SAFE) !== a) { ctx.moveTo((x + 1) * cell, y * cell); ctx.lineTo((x + 1) * cell, (y + 1) * cell); }
-      if (y + 1 < rows && (grid[idx(x, y + 1)] !== SAFE) !== a) { ctx.moveTo(x * cell, (y + 1) * cell); ctx.lineTo((x + 1) * cell, (y + 1) * cell); }
+    // v74: Kante als fertiger Pfad zwischenspeichern – nur neu, wenn sich die freigelegte Flaeche aendert
+    const ek = nSafe + '|' + cell + '|' + cols + '|' + rows;
+    if (ek !== edgeKey || !edgePath) {
+      edgeKey = ek; edgePath = new Path2D();
+      for (let y = 0; y < rows; y++) for (let x = 0; x < cols; x++) {
+        const a = grid[idx(x, y)] !== SAFE;
+        if (x + 1 < cols && (grid[idx(x + 1, y)] !== SAFE) !== a) { edgePath.moveTo((x + 1) * cell, y * cell); edgePath.lineTo((x + 1) * cell, (y + 1) * cell); }
+        if (y + 1 < rows && (grid[idx(x, y + 1)] !== SAFE) !== a) { edgePath.moveTo(x * cell, (y + 1) * cell); edgePath.lineTo((x + 1) * cell, (y + 1) * cell); }
+      }
     }
     // v68: leuchtende Schnittkante – breiter farbiger Schein und heller Kern
     ctx.lineCap = 'square';
-    ctx.globalAlpha = 0.35 + 0.1 * Math.sin(time * 3); ctx.strokeStyle = SHOT_COL[bossType] || '#5ee0c0'; ctx.lineWidth = Math.max(4, U * 0.7); ctx.stroke();
-    ctx.globalAlpha = 1; ctx.strokeStyle = '#eafcff'; ctx.lineWidth = Math.max(1.5, U * 0.16); ctx.stroke();
+    if (!lowFx) { ctx.globalAlpha = 0.35 + 0.1 * Math.sin(time * 3); ctx.strokeStyle = SHOT_COL[bossType] || '#5ee0c0'; ctx.lineWidth = Math.max(4, U * 0.7); ctx.stroke(edgePath); }
+    ctx.globalAlpha = 1; ctx.strokeStyle = '#eafcff'; ctx.lineWidth = Math.max(1.5, U * 0.16); ctx.stroke(edgePath);
     // v68: Lichtschimmer ueber dem frisch aufgedeckten Stueck
-    if (revealT > 0 && revealCv) {
-      const k = 1 - revealT / REVEAL_SEC, tw = layer.width, th = layer.height;
+    if (revealT > 0 && revealCv && !lowFx) {
+      const k = 1 - revealT / REVEAL_SEC, tw = cols, th = rows;
       if (!shimCv || shimCv.width !== tw || shimCv.height !== th) { shimCv = document.createElement('canvas'); shimCv.width = tw; shimCv.height = th; shimCtx = shimCv.getContext('2d'); }
       const sc = shimCtx, band = (tw + th) * 0.25, x0 = -band + k * (tw + th + band * 2);
       sc.globalCompositeOperation = 'source-over'; sc.clearRect(0, 0, tw, th);
       const gl = sc.createLinearGradient(x0 - band, 0, x0 + band, th * 0.6);
       gl.addColorStop(0, 'rgba(255,255,255,0)'); gl.addColorStop(0.5, 'rgba(255,255,240,' + (0.55 * (1 - k * 0.5)) + ')'); gl.addColorStop(1, 'rgba(255,255,255,0)');
       sc.fillStyle = gl; sc.fillRect(0, 0, tw, th);
-      sc.globalCompositeOperation = 'destination-in'; sc.imageSmoothingEnabled = false; sc.drawImage(revealCv, 0, 0, tw, th);
+      sc.globalCompositeOperation = 'destination-in'; sc.drawImage(revealCv, 0, 0);
       ctx.save(); ctx.globalCompositeOperation = 'lighter'; ctx.drawImage(shimCv, 0, 0, w, h); ctx.restore();
     }
     for (const b of blocks) {          // Stein: Grundfarbe, helle Kante oben/links, dunkle Kante unten/rechts, Umriss
@@ -1769,7 +1775,7 @@
     if (p.trail.length > 1) {
       ctx.save();
       const tc = shieldT > 0 ? '#b9f27c' : '#ffd23f';
-      ctx.shadowColor = tc; ctx.shadowBlur = U * 0.6;
+      if (!lowFx) { ctx.shadowColor = tc; ctx.shadowBlur = U * 0.6; }
       ctx.strokeStyle = tc; ctx.lineWidth = Math.max(2, U * 0.28); ctx.lineCap = 'round'; ctx.lineJoin = 'round';
       ctx.beginPath();
       ctx.moveTo((p.trail[0][0] + 0.5) * cell, (p.trail[0][1] + 0.5) * cell);
@@ -1894,7 +1900,12 @@
 
   let last = 0;
   function loop(ts) {
-    let dt = Math.min(0.05, (ts - last) / 1000 || 0); last = ts;
+    const rawDt = (ts - last) / 1000 || 0;
+    let dt = Math.min(0.05, rawDt); last = ts;
+    if (!lowFx && state === 'play' && !paused && rawDt > 0 && rawDt < 0.5) {     // v74: ruckelt es, Effekte sparsamer schalten
+      fpsAcc += rawDt; fpsN++;
+      if (fpsN >= 90) { if (fpsAcc / fpsN > 0.03) lowFx = true; fpsAcc = 0; fpsN = 0; }
+    }
     if (paused) dt = 0;
     update(dt); draw();
     if (R3D) { try { render3D(dt); } catch (err) { console.error(err); } }
@@ -2559,7 +2570,7 @@
   el('refillBtn').addEventListener('pointerdown', e => e.stopPropagation());
   renderEnergy();
   // v65: Feedback per E-Mail (die App selbst sammelt keine Daten) und Link zur Datenschutzerklaerung
-  const APP_VER = 'v73', SUPPORT = 'vayosky.games@gmail.com';
+  const APP_VER = 'v74', SUPPORT = 'vayosky.games@gmail.com';
   el('mailBtn').addEventListener('click', () => {
     const body = tr('Hallo Vayosky-Team,') + '\n\n\n\n---\n' + tr('Version: ') + APP_VER + ' · Level ' + level + '\n' + tr('Gerät: ') + navigator.userAgent;
     location.href = 'mailto:' + SUPPORT + '?subject=' + encodeURIComponent('Space Slice – Feedback') + '&body=' + encodeURIComponent(body);
