@@ -285,6 +285,22 @@
   #picHint{position:absolute;left:50%;bottom:10px;transform:translateX(-50%);max-width:92%;text-align:center;pointer-events:none;
     background:rgba(9,15,34,.88);border:1px solid var(--line);border-radius:999px;padding:8px 16px;font-weight:800;font-size:14px;color:var(--accent)}
   #picHint.hidden{display:none}
+  /* v-next: Pause-Knopf auf dem Handy unten links neben dem Joystick, gross und gut erreichbar */
+  #padPause{display:none}
+  @media (pointer:coarse){
+    #hud #pauseBtn{display:none}
+    #pad{position:relative}
+    #padPause{display:flex;align-items:center;justify-content:center;position:absolute;left:8px;bottom:14px;width:42px;height:42px;padding:0;
+      border-radius:13px;background:linear-gradient(180deg,#ffd23f,#f0a81c);border:0;box-shadow:0 3px 0 #8a5a12;color:#1a1400;font-size:24px;font-weight:900;line-height:1;z-index:3}
+    #padPause:active{transform:translateY(3px);box-shadow:0 1px 0 #8a5a12}
+    #padPause.hidden{display:none}
+    #app.joy-p-left #padPause{left:auto;right:8px}
+    #hud #music,#hud #mute,#hud #fs{min-width:32px;min-height:28px;font-size:15px;padding:3px 7px}
+  }
+  @media (pointer:coarse) and (orientation:landscape){
+    #padPause,#app.joy-p-left #padPause{left:50%;right:auto;top:12px;bottom:auto;transform:translateX(-50%)}
+    #padPause:active{transform:translateX(-50%) translateY(3px)}
+  }
 </style>
 </head>
 <body>
@@ -365,6 +381,7 @@
     </div>
   </div>
   <div id="pad">
+    <button id="padPause" type="button" class="hidden" aria-label="Pause">⏸</button>
     <div class="bcol"><button class="bb" id="bb_freeze" type="button" aria-label="Einfrieren einsetzen"></button><button class="bb" id="bb_slow" type="button" aria-label="Zeitlupe einsetzen"></button></div>
     <div id="base"><div id="knob"></div></div>
     <div class="bcol"><button class="bb" id="bb_shield" type="button" aria-label="Schutz einsetzen"></button><button class="bb" id="bb_speed" type="button" aria-label="Turbo einsetzen"></button></div>
@@ -1136,7 +1153,7 @@
     el('pauseOv').classList.toggle('hidden', !on);
     if (!on) { last = 0; player.canEnter = true; }
   }
-  function pauseVis() { const b = el('pauseBtn'); if (b) b.classList.toggle('hidden', !canPause()); if (paused && state !== 'play') setPause(false); }
+  function pauseVis() { for (const id of ['pauseBtn', 'padPause']) { const b = el(id); if (b) b.classList.toggle('hidden', !canPause()); } if (paused && state !== 'play') setPause(false); }
   function updateHud() {
     checkRot(); pauseVis();
     el('lvl').textContent = level;
@@ -2522,7 +2539,7 @@
   el('refillBtn').addEventListener('pointerdown', e => e.stopPropagation());
   renderEnergy();
   // v65: Feedback per E-Mail (die App selbst sammelt keine Daten) und Link zur Datenschutzerklaerung
-  const APP_VER = 'v70', SUPPORT = 'vayosky.games@gmail.com';
+  const APP_VER = 'v71', SUPPORT = 'vayosky.games@gmail.com';
   el('mailBtn').addEventListener('click', () => {
     const body = tr('Hallo Vayosky-Team,') + '\n\n\n\n---\n' + tr('Version: ') + APP_VER + ' · Level ' + level + '\n' + tr('Gerät: ') + navigator.userAgent;
     location.href = 'mailto:' + SUPPORT + '?subject=' + encodeURIComponent('Space Slice – Feedback') + '&body=' + encodeURIComponent(body);
@@ -2560,6 +2577,8 @@
   galCountTxt();
   el('pauseBtn').addEventListener('click', () => setPause(true));
   el('pauseBtn').addEventListener('pointerdown', e => e.stopPropagation());
+  el('padPause').addEventListener('click', () => setPause(true));
+  el('padPause').addEventListener('pointerdown', e => e.stopPropagation());
   el('resumeBtn').addEventListener('click', () => { initAudio(); setPause(false); });
   el('quitBtn').addEventListener('click', () => {
     saveShop(); location.reload();     // Level-Stand und Muenzen bleiben gespeichert
