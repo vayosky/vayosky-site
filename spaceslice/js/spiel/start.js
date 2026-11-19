@@ -1,4 +1,6 @@
 // Space Slice · Spielstart, Feedback, Galerie-Wiederholung (wird als letzte Datei geladen)
+// Testmodus: ausserhalb von vayosky.ch (Vorschau auf claude.ai, lokal am PC) Levelauswahl und «Münzen ∞» zeigen
+try { if (!/(^|\.)vayosky\.ch$/i.test(location.hostname)) document.documentElement.classList.add('testmode'); } catch (err) {}
 try { setup3D(); } catch (err) { R3D = false; }
 try { level = Math.max(1, Math.min(999, parseInt(localStorage.getItem('lastLvl'), 10) || 1)); } catch (err) {}
 fillLevels(); refreshMission(); el('lvl').textContent = level;

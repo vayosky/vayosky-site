@@ -4,6 +4,8 @@
 @font-face{font-family:'Nunito';font-style:normal;font-weight:700;font-display:swap;src:url(../fonts/nunito-latin-700-normal.woff2) format('woff2')}
 @font-face{font-family:'Nunito';font-style:normal;font-weight:800;font-display:swap;src:url(../fonts/nunito-latin-800-normal.woff2) format('woff2')}
 #testRow,#duelRow,#lvlRow{display:none!important}
+/* Testmodus: Levelauswahl und «Münzen ∞» nur in der Vorschau und am PC, nie auf vayosky.ch (dort spielen die Tester) */
+html.testmode #testRow,html.testmode #lvlRow{display:grid!important}
   /* Gestaltung: Nachthimmel-Spielhalle. Ein Thema (dunkel), Titel in Automaten-Schrift, gelber Startknopf als einzige laute Flaeche. */
   :root{
     color-scheme:dark;
