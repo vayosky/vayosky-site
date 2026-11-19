@@ -33,6 +33,7 @@ function closeTrail() {
   // Linie wird fest; danach bleibt genau ein offener Bereich verdeckt.
   const n = grid.length, comp = new Int32Array(n).fill(-1), sizes = [], stack = [];
   const wasSafe = new Uint8Array(n); for (let i = 0; i < n; i++) wasSafe[i] = grid[i] === SAFE ? 1 : 0;
+  const score0 = score, cx0 = player.x, cy0 = player.y;      // v76: fuer die schwebenden Punkte
   for (let i = 0; i < n; i++) if (grid[i] === TRAIL) grid[i] = SAFE;
   for (let s = 0; s < n; s++) {
     if (grid[s] !== OPEN || comp[s] >= 0) continue;
@@ -89,6 +90,7 @@ function closeTrail() {
   if (gainedPct >= 30 && state === 'play') {          // v67: Mega-Slice – mutiger grosser Schnitt
     score += 1000; wallet += 1; slowT = Math.max(slowT, 3); flashT = Math.max(flashT, 0.15);
     say(tr('🔥 Mega-Slice! +1000 · +1 🪙')); sfx('bonus');
+    buzz([30, 40, 70]);                                            // v76
     burst(player.x + 0.5, player.y + 0.5, '#ffd23f', 30, 1.5);
   }
   let loot = 0, crate = false;
@@ -115,6 +117,7 @@ function closeTrail() {
   if (loot) { score += loot; if (!crate && !caught) say('💰 +' + loot + tr(' Punkte')); }
   sfx(crate ? 'bonus' : caught ? 'catch' : loot ? 'coin' : 'close');
   relocatePlayer();
+  fxPoints(cx0, cy0, score - score0, gainedPct >= 30);           // v76: «+Punkte» an der Schnittstelle
   const blockCells = blocks.reduce((a, b) => a + b.cells.length, 0);       // Hindernisse zaehlen nicht gegen den Spieler
   pct = (safe + blockCells - borderCount) / (grid.length - borderCount) * 100;
   updateHud();

@@ -291,3 +291,13 @@ html.testmode #testRow,html.testmode #lvlRow{display:grid!important}
     #padPause,#app.joy-p-left #padPause{left:50%;right:auto;top:12px;bottom:auto;transform:translateX(-50%)}
     #padPause:active{transform:translateX(-50%) translateY(3px)}
   }
+  /* v76: Boss-Vorstellung beim Levelstart */
+  #bossIntro{position:absolute;left:0;right:0;top:22%;z-index:12;display:flex;flex-direction:column;align-items:center;gap:2px;pointer-events:none;text-align:center}
+  #bossIntro.hidden{display:none}
+  #biImg{width:min(46vw,190px);aspect-ratio:1;background:url(../img/bosse.png) no-repeat;background-size:600% 400%;image-rendering:pixelated}
+  #biLvl{font-family:var(--display);font-size:13px;letter-spacing:.2em;color:#ffd23f;text-shadow:0 2px 0 #000}
+  #biName{font-family:var(--display);font-weight:400;font-size:clamp(24px,8vw,40px);line-height:1.05;color:#fff;text-shadow:0 3px 0 #1e2d66,0 0 18px rgba(0,0,0,.8)}
+  #bossIntro.show{animation:biIn .45s cubic-bezier(.2,1.6,.4,1) both}
+  #bossIntro.out{animation:biOut .4s ease-in both}
+  @keyframes biIn{from{opacity:0;transform:scale(.6)}to{opacity:1;transform:scale(1)}}
+  @keyframes biOut{from{opacity:1;transform:scale(1)}to{opacity:0;transform:scale(1.15)}}

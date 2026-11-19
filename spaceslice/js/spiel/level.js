@@ -100,6 +100,7 @@ function startLevel() {
   say(((level - 1) % MISSION_LEN === 0 ? tr('Galaxie ') + missionOf(level) + ' · ' : '') + tr('Boss: ') + B.name + (level === WORLD2 ? tr(' · neu: Steine') : level === STONE_FANCY ? tr(' · neu: bunte Steine') : level === STONE_EDGE ? tr(' · Steine auch am Rand') : level === 2 ? tr(' · er schiesst!') : ''));
   if (inv.life > 0 && lives < 5) { inv.life--; lives++; saveShop(); say('❤ Extraleben eingesetzt · Boss: ' + B.name); }
   state = 'play';
+  bossIntro(bossType);                                             // v76: Boss-Vorstellung
   el('overlay').classList.add('hidden');
   picShownAt = 0; el('picHint').classList.add('hidden');
   if (!replay) try { localStorage.setItem('lastLvl', String(level)); } catch (err) {}

@@ -9,6 +9,7 @@ function igniteAt(x, y) {
   if (fuse && fuse.hit) { if (k > fuse.pos) fuse.pos = k; return true; }
   fuse = { hit: true, pos: k, from: k, lit: true };
   sfx('hit'); flashT = Math.max(flashT, 0.15); say(tr('🔥 Lunte brennt – schnell zum Rand!'));
+  buzz(60);                                                        // v76
   return true;
 }
 function burst(x, y, col, n = 12, sp = 1) {
@@ -41,6 +42,7 @@ function respawnSparx(z) {         // an eine Randstelle weit weg vom Spieler se
 }
 function loseLife() {
   lostInLvl++; lives--; flashT = 0.4; sfx('hit'); shots = [];
+  fxHit();                                                         // v76: Wackeln und Vibration
   if (lives <= 0) { updateHud(); endGame(false); return; }
   const p = player;
   for (let i = 0; i < grid.length; i++) if (grid[i] === TRAIL) grid[i] = OPEN;

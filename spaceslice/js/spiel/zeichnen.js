@@ -371,6 +371,7 @@ function drawField() {
     ctx.beginPath(); ctx.arc(q.x * cell, q.y * cell, U * q.r, 0, Math.PI * 2); ctx.fill();
   }
   ctx.globalAlpha = 1;
+  drawFloats();                         // v76: schwebende Punkte (effekte.js)
   const p = player, t = p.dir ? Math.min(1, p.acc) : 1;
   const px = (p.px + (p.x - p.px) * t + 0.5) * cell, py = (p.py + (p.y - p.py) * t + 0.5) * cell;
   if (p.trail.length > 1) {
