@@ -92,6 +92,7 @@ function startLevel() {
   mkSp(true, bsp * B.sp);
   spiders[0].tm = B.tm; spiders[0].rad = B.rad;
   for (let i = 0; i < nSmall; i++) mkSp(false, bsp * 1.2);
+  abReset();                        // v78: Boss-Fähigkeit für dieses Level vorbereiten
   lastSafe = borderCount;
   shots = []; shotT = 4; canCont = false; contN = 0; refreshCont();
   items = []; itemTimer = 2; freezeT = 0; speedT = 0; shieldT = 0; slowT = 0; pct = 0;

@@ -188,6 +188,8 @@ function update(dt) {
     }
   }
 
+  abUpdate(dt);                     // v78: Boss-Fähigkeiten (boss-faehigkeiten.js)
+
   // v67: Funken laufen auf dem sicheren Rand; Zuendschnur brennt die Linie entlang, wenn der Spieler im Feld stehen bleibt
   if (sparx.length && pct >= SPARX_OFF) {          // v67c: ab 75 % erlischt der Funke (der Rand wird sonst zu kurz)
     for (const z of sparx) burst(z.x + 0.5, z.y + 0.5, '#ff3d6e', 18, 1);

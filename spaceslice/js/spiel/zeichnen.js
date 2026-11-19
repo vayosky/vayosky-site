@@ -8,6 +8,7 @@ function drawBoss(s) {
     ctx.imageSmoothingEnabled = false;
     ctx.shadowColor = frozen ? '#6cc4ff' : SHOT_COL[bossType]; ctx.shadowBlur = U * (0.7 + (frozen ? 0 : Math.sin(time * 6) * 0.25));
     if (frozen) ctx.globalAlpha = 0.65;
+    ctx.globalAlpha *= bossAlpha;    // v78: Fledermaus taucht ab
     ctx.drawImage(BSHEET.img, (bossType % 6) * 192, Math.floor(bossType / 6) * 192, 192, 192, -size / 2, -size / 2, size, size);
     ctx.restore(); ctx.imageSmoothingEnabled = true;
     return;
@@ -348,6 +349,7 @@ function drawField() {
     ctx.fillText('?', cx, cy + U * 0.06);
   }
   for (const s of spiders) if (!(R3D && s.boss)) drawSpider(s);
+  drawAbility();                    // v78: Vorwarnungen der Boss-Fähigkeiten
   for (const sh of shots) {         // leuchtende Geschosse des Bosses
     const z = U * 1.7, px2 = sh.x * cell, py2 = sh.y * cell;
     ctx.save(); ctx.shadowColor = SHOT_COL[bossType]; ctx.shadowBlur = U * 0.9; ctx.imageSmoothingEnabled = false;

@@ -307,3 +307,6 @@ html.testmode #testRow,html.testmode #lvlRow{display:grid!important}
   #updBtn{position:fixed;left:50%;bottom:calc(var(--j) + 30px);transform:translateX(-50%);z-index:45;width:max-content;max-width:92vw;white-space:normal;text-align:center;line-height:1.3;
     background:linear-gradient(180deg,#7dffb3,#1ad1a5);color:#04201a;border:0;border-radius:999px;padding:11px 18px;font-weight:800;font-size:14px;box-shadow:0 6px 18px rgba(0,0,0,.55)}
   #updBtn.hidden{display:none}
+  /* v78: Fähigkeit in der Boss-Vorstellung */
+  #biAb{font-family:var(--display);font-size:14px;letter-spacing:.08em;color:#ff9a3c;text-shadow:0 2px 0 #000}
+  #biAb:empty{display:none}

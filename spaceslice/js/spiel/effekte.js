@@ -62,6 +62,7 @@ function bossIntro(bt) {
     el('biImg').style.filter = 'drop-shadow(0 0 18px ' + (SHOT_COL[bt] || '#ffd23f') + ')';
     el('biLvl').textContent = tr('Level ') + level + ' · BOSS';
     el('biName').textContent = tr(B.name);
+    const an = abilOf(bt); el('biAb').textContent = an ? '⚡ ' + ABIL_NAME[an] : '';   // v78: Fähigkeit des Bosses
     box.classList.remove('hidden', 'out'); void box.offsetWidth; box.classList.add('show');
     clearTimeout(introT);
     introT = setTimeout(() => { box.classList.add('out'); introT = setTimeout(() => box.classList.add('hidden'), 400); }, 1300);

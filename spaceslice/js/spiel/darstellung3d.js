@@ -178,6 +178,7 @@ function render3D(dt) {
     T.glow.material.opacity = 0.35 + Math.sin(time * 6) * 0.12;
     T.shadow.position.set(x, 0.06, z); T.shadow.scale.set(sz * 0.32, sz * 0.32 * 0.6, 1);
     T.shadow.material.opacity = 0.45 - bob * 0.05;
+    T.bossSpr.material.opacity = bossAlpha; T.glow.material.opacity *= bossAlpha; T.shadow.material.opacity *= bossAlpha;   // v78
   }
   // Wunderkisten
   {
