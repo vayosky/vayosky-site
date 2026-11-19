@@ -19,7 +19,7 @@ el('refillBtn').addEventListener('click', () => {
 el('refillBtn').addEventListener('pointerdown', e => e.stopPropagation());
 renderEnergy();
 // v65: Feedback per E-Mail (die App selbst sammelt keine Daten) und Link zur Datenschutzerklaerung
-const APP_VER = 'v78', SUPPORT = 'vayosky.games@gmail.com';
+const APP_VER = 'v79', SUPPORT = 'vayosky.games@gmail.com';
 el('mailBtn').addEventListener('click', () => {
   const body = tr('Hallo Vayosky-Team,') + '\n\n\n\n---\n' + tr('Version: ') + APP_VER + ' · Level ' + level + '\n' + tr('Gerät: ') + navigator.userAgent;
   location.href = 'mailto:' + SUPPORT + '?subject=' + encodeURIComponent('Space Slice – Feedback') + '&body=' + encodeURIComponent(body);
@@ -67,9 +67,12 @@ for (const id of ['pauseOv', 'resumeBtn', 'quitBtn']) el(id).addEventListener('p
 document.addEventListener('visibilitychange', () => { if (document.hidden) setPause(true); });
 window.addEventListener('blur', () => setPause(true));
 window.addEventListener('keydown', e => { if ((e.key === 'p' || e.key === 'P' || e.key === 'Escape') && state === 'play') setPause(!paused); });
-el('resetBtn').addEventListener('click', () => {
-  if (!window.confirm(tr('Spiel wirklich neu beginnen? Level, Münzen, Boni und Bestwert werden gelöscht.'))) return;
+// v79: eigene Rückfrage im Spiel-Stil (vorher graue Handy-Meldung «vayosky.ch enthält …», ohne Hinweis auf die Galerie)
+el('resetBtn').addEventListener('click', () => el('resetOv').classList.remove('hidden'));
+el('resetNo').addEventListener('click', () => el('resetOv').classList.add('hidden'));
+el('resetYes').addEventListener('click', () => {
   try { ['lastLvl', 'best', 'shop', 'freeDay', 'energy', 'gallery'].forEach(k => localStorage.removeItem(k)); } catch (err) {}
   location.reload();
 });
+for (const id of ['resetOv', 'resetYes', 'resetNo']) el(id).addEventListener('pointerdown', e => e.stopPropagation());
 requestAnimationFrame(loop);
