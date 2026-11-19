@@ -76,3 +76,17 @@ function setOvBg(lv) {
     b.classList.add('on');
   } catch (err) {}
 }
+// v81: Vorschau aufs nächste Level im Siegfenster (Welt, Boss, Fähigkeit)
+function showNext(on) {
+  try {
+    el('bossIntro').classList.add('hidden');                     // Boss-Vorstellung nie über dem Siegfenster
+    const box = el('nextBox');
+    if (!on) { box.classList.add('hidden'); return; }
+    const lv = level + 1, bt = BOSS_ORDER[(lv - 1) % BOSS_ORDER.length], nm = picName(bt), an = abilOf(bt);
+    el('nbImg').style.backgroundImage = nm ? 'url(img/' + nm + '.jpg)' : '';
+    el('nbBoss').style.backgroundPosition = (bt % 6) * 20 + '% ' + Math.floor(bt / 6) * (100 / 3) + '%';
+    el('nbName').textContent = tr('Level ') + lv + ' · ' + BOSS[bt].name;
+    el('nbAb').textContent = an ? '⚡ ' + ABIL_NAME[an] : '';
+    box.classList.remove('hidden');
+  } catch (err) {}
+}

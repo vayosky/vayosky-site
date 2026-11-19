@@ -102,6 +102,7 @@ function startLevel() {
   if (inv.life > 0 && lives < 5) { inv.life--; lives++; saveShop(); say('❤ Extraleben eingesetzt · Boss: ' + B.name); }
   state = 'play';
   bossIntro(bossType);                                             // v76: Boss-Vorstellung
+  el('nextBox').classList.add('hidden');                           // v81
   el('overlay').classList.add('hidden');
   picShownAt = 0; el('picHint').classList.add('hidden');
   if (!replay) try { localStorage.setItem('lastLvl', String(level)); } catch (err) {}

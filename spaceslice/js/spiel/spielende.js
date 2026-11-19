@@ -7,8 +7,8 @@ function endGame(won, t, x) {
   if (won) { grid.fill(SAFE); spiders = []; items = []; blocks = []; shots = []; el('overlay').classList.add('won'); }
   el('setupBox').open = false; el('helpBox').open = false;
   el('oTitle').textContent = won ? tr('Level ') + level + tr(' geschafft!') : tr('Erwischt!');
-  el('oText').textContent = won
-    ? tr('Das Bild ist freigelegt. Level ') + (level + 1) + tr(' wird schwieriger: Ziel ') + Math.min(95, 88 + level) + tr(' %, mehr und schnellere Spinnen, seltenere Kisten.')
+  // v81: nach einem Sieg kein langer Erklärtext mehr (die Infos stehen unter «So wird gespielt»), dafür die Vorschau aufs nächste Level
+  el('oText').textContent = won ? ''
     : tr('Keine Leben mehr. Freigelegt: ') + Math.floor(pct) + tr(' %. Mit Münzen kannst du an dieser Stelle weiterspielen.');
   el('oText').style.textAlign = 'center';
   el('oBtn').textContent = won ? tr('Nächstes Level') : tr('Nochmal versuchen');
@@ -52,6 +52,7 @@ function endGame(won, t, x) {
   }
   if (score > best) { best = score; try { localStorage.setItem('best', String(best)); } catch (err) {} }
   el('oText').textContent += ' ★ ' + score + tr(' Punkte') + bonusTxt + tr(' · Bestwert ') + best + '.';
+  el('oText').textContent = el('oText').textContent.trim();
   updateHud();
   refreshDuelUi();
   if (replay) {         // v69: Wiederholung aus der Galerie – danach zurueck zum eigentlichen Spielstand
@@ -61,6 +62,7 @@ function endGame(won, t, x) {
     el('oText').textContent = won ? tr('Wiederholung geschafft. Deine Sterne sind in der Galerie gespeichert.') : tr('Versuch es nochmals oder kehre zu deinem Spielstand zurück.');
     el('eyebrow').textContent = tr('Wiederholung aus der Galerie');
   }
+  showNext(won && !duel && !replay);      // v81: Vorschau «Als Nächstes» über dem Knopf
   if (won) {            // erst das ganze freigelegte Bild zeigen; die Meldung kommt nach einem Tippen
     picShownAt = performance.now();
     el('picHint').classList.remove('hidden');
