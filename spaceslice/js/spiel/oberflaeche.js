@@ -49,3 +49,20 @@ function updateHud() {
   }
 }
 
+// v77: Hinweis «Neue Version bereit». Der Offline-Speicher laedt ein Update im Hintergrund; sobald es bereit ist,
+// erscheint ein Knopf zum Neuladen – nie mitten in einem Level, sondern erst danach.
+let updReady = false;
+function showUpd() {
+  if (!updReady) return;
+  if (state === 'play' || state === 'count') { setTimeout(showUpd, 2000); return; }
+  el('updBtn').classList.remove('hidden');
+}
+el('updBtn').textContent = tr('✨ Neue Version bereit – tippen zum Aktualisieren');
+el('updBtn').addEventListener('click', () => location.reload());
+el('updBtn').addEventListener('pointerdown', e => e.stopPropagation());
+try {
+  // Nur wenn schon eine Version installiert war: dann bedeutet ein Wechsel des Offline-Speichers ein Update
+  if ('serviceWorker' in navigator && navigator.serviceWorker.controller) {
+    navigator.serviceWorker.addEventListener('controllerchange', () => { updReady = true; showUpd(); });
+  }
+} catch (err) {}

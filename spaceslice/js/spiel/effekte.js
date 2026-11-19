@@ -29,8 +29,20 @@ function drawFloats() {
   ctx.restore();
 }
 
-// Vibration (nur Android; das iPhone erlaubt es im Browser nicht). Aus, wenn der Ton aus ist.
-const buzz = pattern => { try { if (!muted && navigator.vibrate) navigator.vibrate(pattern); } catch (err) {} };
+// Vibration (nur Android; das iPhone erlaubt es im Browser nicht). v77: eigene Einstellung An/Aus, unabhaengig vom Ton.
+let vibOn = true;
+try { vibOn = localStorage.getItem('vib') !== '0'; } catch (err) {}
+const buzz = pattern => { try { if (vibOn && navigator.vibrate) navigator.vibrate(pattern); } catch (err) {} };
+function setVib(on) {
+  vibOn = on; el('vibOn').classList.toggle('on', on); el('vibOff').classList.toggle('on', !on);
+  try { localStorage.setItem('vib', on ? '1' : '0'); } catch (err) {}
+}
+setVib(vibOn);
+el('vibOn').addEventListener('click', () => { setVib(true); buzz(120); });
+el('vibOff').addEventListener('click', () => setVib(false));
+el('vibTest').addEventListener('click', () => { try { if (navigator.vibrate) navigator.vibrate([120, 80, 120]); } catch (err) {} });
+// Geraete ohne Vibration (z. B. iPhone): Zeile ausblenden
+if (!('vibrate' in navigator)) el('vibRow').classList.add('novib');
 
 // Treffer: Spielfeld wackelt kurz, Handy vibriert
 function fxHit() {

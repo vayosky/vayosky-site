@@ -63,6 +63,7 @@
               </select></div>
             <p class="setHint" id="musicHint">🎧 Eigene Musik? Schalte oben die Spielmusik 🎵 aus und lass z. B. Spotify im Hintergrund laufen. Die Spieleffekte 🔊 bleiben an.</p>
             <div class="row" id="joyRow"><span class="lab">Joystick</span><span class="seg"><button id="joyL" type="button">Links</button><button id="joyM" type="button">Mitte</button><button id="joyR" type="button">Rechts</button></span></div>
+            <div class="row" id="vibRow"><span class="lab">Vibration</span><span class="seg"><button id="vibOn" type="button">An</button><button id="vibOff" type="button">Aus</button><button id="vibTest" type="button">Testen</button></span></div>
             <div class="row" id="lvlRow"><label class="lab" for="lvlSel">Level</label><select id="lvlSel"></select></div>
             <div class="row" id="testRow"><span class="lab">Test</span><span class="seg"><button id="testOff" type="button" class="on">Normal</button><button id="testOn" type="button">Münzen ∞</button></span></div>
             <div class="row" id="resetRow"><span class="lab">Spielstand</span><span class="seg"><button id="resetBtn" type="button">Spiel neu beginnen</button></span></div>
@@ -103,6 +104,7 @@
     <div class="sv-nav"><button id="galHome" type="button">Zurück zum Spiel</button></div>
   </div>
   <div id="galBig" class="hidden"><img id="galBigImg" alt=""><div id="galBigT"></div><div class="gbb"><button id="replayBtn" type="button"></button><button id="galBigClose" type="button">Schliessen</button></div></div>
+  <button id="updBtn" type="button" class="hidden"></button>
   <div id="shopView" class="hidden">
     <div class="sv-top"><span class="sv-title">Shop</span><span class="pill" id="svWallet">🪙 0</span><button id="svClose" type="button" aria-label="Shop schliessen">✕</button></div>
     <div class="sv-body">
