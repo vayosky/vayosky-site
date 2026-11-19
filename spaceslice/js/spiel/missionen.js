@@ -10,6 +10,7 @@ function refreshMission() {
   const lv = state === 'won' ? level + 1 : level, m = missionOf(lv);
   const eb = el('eyebrow');
   if (eb) eb.textContent = tr('Mission ') + m + tr(' · Galaxie ') + m + ' · Level ' + ((lv - 1) % MISSION_LEN + 1) + tr(' von ') + MISSION_LEN;
+  setOvBg(lv);                      // v80: Welt dieses Levels als Hintergrund des Startfensters
 }
 const travel = { on: false, t: 0, m: 1, stars: [] };
 let pendingTravel = 0;

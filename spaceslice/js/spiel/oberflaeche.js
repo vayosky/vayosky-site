@@ -66,3 +66,13 @@ try {
     navigator.serviceWorker.addEventListener('controllerchange', () => { updReady = true; showUpd(); });
   }
 } catch (err) {}
+// v80: Hintergrund des Startfensters = Welt des Levels, das als Nächstes gespielt wird (abgedunkelt, leicht unscharf)
+function setOvBg(lv) {
+  try {
+    const b = el('ovBg'), nm = picName(BOSS_ORDER[(Math.max(1, lv) - 1) % BOSS_ORDER.length]);
+    if (!nm) { b.classList.remove('on'); return; }
+    const url = 'img/' + nm + '.jpg';
+    if (b.dataset.u !== url) { b.dataset.u = url; b.style.backgroundImage = 'url(' + url + ')'; }
+    b.classList.add('on');
+  } catch (err) {}
+}
