@@ -19,7 +19,8 @@ function fitCanvas() {
   const dpr0 = window.devicePixelRatio || 1;
   cell = Math.max(2, Math.floor(Math.min(W / (cols + PADC), H / (rows + PADC)) * dpr0) / dpr0);
   U = cell * S;
-  const dpr = R3D ? Math.min(1.5, window.devicePixelRatio || 1) : (window.devicePixelRatio || 1);
+  // v82: in 3D schärfer (bis 2-fach statt 1,5-fach); schwache Handys (lowFx) bleiben bei 1,5
+  const dpr = R3D ? Math.min(lowFx ? 1.5 : 2, window.devicePixelRatio || 1) : (window.devicePixelRatio || 1);
   cv.style.width = (cols + PADC) * cell + 'px';
   cv.style.height = (rows + PADC) * cell + 'px';
   cv.width = Math.round((cols + PADC) * cell * dpr);

@@ -50,7 +50,10 @@ function makeCover(W, H, lv) {
     const tg = t.getContext('2d');
     tg.drawImage(BSHEET.img, (bt % 6) * 192, Math.floor(bt / 6) * 192, 192, 192, 0, 0, 192, 192);
     tg.globalCompositeOperation = 'source-in'; tg.fillStyle = mix(0.08, 1); tg.fillRect(0, 0, 192, 192);
+    // v82: Silhouette weicher – sauber vergrössern und leicht weichzeichnen, damit die Pixel-Treppen verschwinden
     g.save(); g.shadowColor = col; g.shadowBlur = sz * 0.04; g.globalAlpha = 0.9;
+    g.imageSmoothingEnabled = true; g.imageSmoothingQuality = 'high';
+    try { g.filter = 'blur(' + Math.max(1, Math.round(sz / 192 * 0.8)) + 'px)'; } catch (err) {}
     g.drawImage(t, (W - sz) / 2, H * 0.45 - sz / 2, sz, sz); g.restore();
   }
   return c;

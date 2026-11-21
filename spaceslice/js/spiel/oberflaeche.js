@@ -90,3 +90,6 @@ function showNext(on) {
     box.classList.remove('hidden');
   } catch (err) {}
 }
+// v82: Tippen auf die Vorschau startet das nächste Level (wie der Knopf darunter)
+el('nextBox').addEventListener('click', () => el('oBtn').click());
+el('nextBox').addEventListener('pointerdown', e => e.stopPropagation());

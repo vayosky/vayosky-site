@@ -338,3 +338,9 @@ html.testmode #testRow,html.testmode #lvlRow{display:grid!important}
   #nbName{font-size:16px;color:var(--text)}
   #nbAb{font-size:13px;font-weight:800;color:#ff9a3c}
   #nbAb:empty{display:none}
+  /* v82: Siegfenster kompakter – Knopf «Nächstes Level» bleibt unten immer sichtbar, Energie-Zeile nur im Startfenster */
+  #overlay.won #energyRow{display:none}
+  #overlay.won #oBtn{position:sticky;bottom:0;z-index:3}
+  #nextBox{cursor:pointer;position:relative;padding-right:34px}
+  #nextBox::after{content:"▶";position:absolute;right:12px;top:50%;transform:translateY(-50%);color:var(--accent);font-size:16px}
+  #nextBox:active{transform:scale(.98)}

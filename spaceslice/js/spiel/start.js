@@ -19,7 +19,7 @@ el('refillBtn').addEventListener('click', () => {
 el('refillBtn').addEventListener('pointerdown', e => e.stopPropagation());
 renderEnergy();
 // v65: Feedback per E-Mail (die App selbst sammelt keine Daten) und Link zur Datenschutzerklaerung
-const APP_VER = 'v81', SUPPORT = 'vayosky.games@gmail.com';
+const APP_VER = 'v82', SUPPORT = 'vayosky.games@gmail.com';
 el('mailBtn').addEventListener('click', () => {
   const body = tr('Hallo Vayosky-Team,') + '\n\n\n\n---\n' + tr('Version: ') + APP_VER + ' · Level ' + level + '\n' + tr('Gerät: ') + navigator.userAgent;
   location.href = 'mailto:' + SUPPORT + '?subject=' + encodeURIComponent('Space Slice – Feedback') + '&body=' + encodeURIComponent(body);
